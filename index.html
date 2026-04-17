@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Company Research Companion</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="brand-mark">CRC</span>
+        <div class="brand-text">
+          <span class="brand-name">Company Research Companion</span>
+        </div>
+      </div>
+      <span class="header-tag">CBS Technology Strategy</span>
+    </div>
+  </header>
+
+  <!-- Search Section -->
+  <section class="search-section">
+    <div class="search-inner">
+      <div class="search-label">Generate a strategic brief for any company</div>
+      <div class="search-row">
+        <input
+          type="text"
+          id="companyInput"
+          class="search-input"
+          placeholder="e.g. Apple, Tesla, Palantir, Snowflake…"
+          autocomplete="off"
+          aria-label="Company name"
+        />
+        <button id="generateBtn" class="btn-primary" aria-label="Generate brief">
+          <span class="btn-text">Generate Brief</span>
+          <span class="btn-icon">→</span>
+        </button>
+      </div>
+
+      <!-- Intent Selector -->
+      <div class="intent-row">
+        <span class="intent-label">Research intent</span>
+        <div class="intent-tabs" role="radiogroup" aria-label="Research intent">
+          <button class="intent-tab active" data-intent="competitive" role="radio" aria-checked="true" >Competitive Intel</button>
+          <button class="intent-tab"        data-intent="partnership" role="radio" aria-checked="false">Partnership</button>
+          <button class="intent-tab"        data-intent="ma"          role="radio" aria-checked="false">M&amp;A / Investment</button>
+        </div>
+      </div>
+
+      <div class="intent-descriptor" id="intentDescriptor"></div>
+
+      <!-- Partner company (shown only when Partnership intent is selected) -->
+      <div class="partner-row" id="partnerRow" hidden>
+        <span class="partner-label">Partnering with</span>
+        <input type="text" id="partnerInput" class="partner-input" placeholder="e.g. Microsoft, Salesforce…" autocomplete="off" aria-label="Partner company name" />
+      </div>
+
+      <!-- Demo buttons -->
+      <div class="search-divider"></div>
+      <div class="demo-row">
+        <span class="demo-label">Pre-built briefs</span>
+        <button class="btn-demo" data-company="DigitalOcean">DigitalOcean</button>
+        <button class="btn-demo" data-company="Uber">Uber</button>
+        <button class="btn-demo" data-company="LinkedIn">LinkedIn</button>
+        <button class="btn-demo" data-company="Stripe">Stripe</button>
+        <button class="btn-demo" data-company="Shopify">Shopify</button>
+        <button class="btn-demo" data-company="Apple">Apple</button>
+      </div>
+
+      <div id="inputError" class="input-error" role="alert" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main id="mainContent" class="main-content">
+
+    <!-- Empty State -->
+    <div id="emptyState" class="state-empty">
+      <div class="empty-icon">
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="32" height="32" rx="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <line x1="14" y1="17" x2="34" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="14" y1="23" x2="30" y2="23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="14" y1="29" x2="26" y2="29" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h2 class="empty-title">Select a company to begin</h2>
+      <p class="empty-body">Choose one of the six pre-built companies above. Each brief covers competitive positioning, market structure, ecosystem dynamics, and recent strategic developments — tailored to your research intent.</p>
+      <div class="empty-cards">
+        <div class="empty-card"><span class="empty-card-icon">⬡</span><span>Competitive positioning &amp; market structure</span></div>
+        <div class="empty-card"><span class="empty-card-icon">⬡</span><span>Ecosystem role &amp; platform dynamics</span></div>
+        <div class="empty-card"><span class="empty-card-icon">⬡</span><span>Intent-tailored analysis — competitive, partnership, or M&amp;A</span></div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="state-loading" hidden>
+      <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+      <div class="loading-company" id="loadingCompanyName"></div>
+      <div class="loading-steps">
+        <div class="loading-step" id="step1">Identifying strategic position…</div>
+        <div class="loading-step" id="step2">Mapping ecosystem &amp; platform dynamics…</div>
+        <div class="loading-step" id="step3">Assessing competitive moat…</div>
+        <div class="loading-step" id="step4">Generating consulting brief…</div>
+      </div>
+    </div>
+
+    <!-- Brief Output -->
+    <div id="briefOutput" class="brief-output" hidden>
+
+      <!-- Section jump nav -->
+      <nav class="brief-jump-nav" id="briefJumpNav" hidden>
+        <div class="brief-jump-nav-inner" id="briefJumpNavInner"></div>
+      </nav>
+
+      <!-- Brief Header -->
+      <div class="brief-header" id="briefHeader">
+        <div class="brief-header-left">
+          <div class="brief-company-badge" id="briefSectorBadge"></div>
+          <div class="brief-title-row">
+            <div class="brief-company-logo" id="briefCompanyLogo"></div>
+            <h1 class="brief-company-name" id="briefCompanyName"></h1>
+          </div>
+          <div class="brief-company-meta" id="briefCompanyMeta"></div>
+          <div class="brief-takeaway" id="briefTakeaway"></div>
+        </div>
+        <div class="brief-header-right">
+          <div class="brief-updated" id="briefUpdated"></div>
+        </div>
+      </div>
+
+      <!-- Frameworks Applied -->
+      <div class="frameworks-row" id="frameworksRow" hidden>
+        <span class="frameworks-label">Frameworks Applied</span>
+        <div class="frameworks-chips" id="frameworksChips"></div>
+      </div>
+
+      <!-- AI-generated notice (shown only for API-generated briefs) -->
+      <div id="aiNotice" class="ai-notice" hidden>
+        <span class="ai-notice-icon">✦</span>
+        <span id="aiNoticeText"></span>
+      </div>
+
+      <!-- Dashboard Grid -->
+      <div class="dashboard-grid">
+
+        <!-- Card 01: Company Overview -->
+        <div id="sec-overview" class="card card-overview">
+          <div class="card-header">
+            <span class="card-num">01</span>
+            <h2 class="card-title">Company Overview</h2>
+          </div>
+          <div class="card-body">
+            <p class="card-text" id="cardOverview"></p>
+            <div class="card-row-pair">
+              <div class="card-sub-block">
+                <div class="card-sub-label">Business Model</div>
+                <div class="card-sub-text" id="cardBusinessModel"></div>
+              </div>
+              <div class="card-sub-block">
+                <div class="card-sub-label">Target Customers</div>
+                <div class="card-sub-text" id="cardTargetCustomers"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 02: Competitive Positioning (with map) -->
+        <div id="sec-positioning" class="card card-positioning">
+          <div class="card-header">
+            <span class="card-num">02</span>
+            <h2 class="card-title">Competitive Positioning</h2>
+          </div>
+          <div class="card-body">
+            <div class="viz-container" id="vizCompetitiveMap"></div>
+            <p class="card-text card-text-below-viz" id="cardPositioning"></p>
+          </div>
+        </div>
+
+        <!-- Card 03: Market Landscape (with WTA spectrum) -->
+        <div id="sec-market" class="card card-market">
+          <div class="card-header">
+            <span class="card-num">03</span>
+            <h2 class="card-title">Market Landscape</h2>
+          </div>
+          <div class="card-body">
+            <div class="viz-container" id="vizWtaSpectrum"></div>
+            <p class="card-text card-text-below-viz" id="cardMarket"></p>
+          </div>
+        </div>
+
+        <!-- Card 04: Platform / Ecosystem Role (with diagram) -->
+        <div id="sec-ecosystem" class="card card-ecosystem">
+          <div class="card-header">
+            <span class="card-num">04</span>
+            <h2 class="card-title">Ecosystem</h2>
+          </div>
+          <div class="card-body">
+            <div class="viz-container" id="vizEcosystem"></div>
+            <p class="card-text card-text-below-viz" id="cardEcosystem"></p>
+          </div>
+        </div>
+
+        <!-- Card 05: Strengths -->
+        <div id="sec-strengths" class="card card-strengths">
+          <div class="card-header">
+            <span class="card-num">05</span>
+            <h2 class="card-title">Strengths &amp; Sources of Advantage</h2>
+          </div>
+          <div class="card-body">
+            <ul class="card-list" id="cardStrengths"></ul>
+          </div>
+        </div>
+
+        <!-- Card 06: Weaknesses -->
+        <div id="sec-weaknesses" class="card card-weaknesses">
+          <div class="card-header">
+            <span class="card-num">06</span>
+            <h2 class="card-title">Weaknesses &amp; Vulnerabilities</h2>
+          </div>
+          <div class="card-body">
+            <ul class="card-list weakness-list" id="cardWeaknesses"></ul>
+          </div>
+        </div>
+
+        <!-- Card 07: Partnership Implications (only shown for Partnership intent) -->
+        <div class="card card-partnership" id="cardPartnershipWrap" hidden>
+          <div class="card-header">
+            <span class="card-num">07</span>
+            <h2 class="card-title">Partnership Implications</h2>
+          </div>
+          <div class="card-body">
+            <div class="viz-container" id="vizRevenue"></div>
+            <p class="card-text" id="cardPartnership"></p>
+          </div>
+        </div>
+
+        <!-- Card 08: Investment / M&A (only shown for M&A intent) -->
+        <div class="card card-investment" id="cardInvestmentWrap" hidden>
+          <div class="card-header">
+            <span class="card-num">08</span>
+            <h2 class="card-title">Investment &amp; M&amp;A Implications</h2>
+          </div>
+          <div class="card-body">
+            <p class="card-text" id="cardInvestment"></p>
+          </div>
+        </div>
+
+        <!-- Card: Recent Developments -->
+        <div id="sec-news" class="card card-news">
+          <div class="card-header">
+            <span class="card-num">07</span>
+            <h2 class="card-title">Recent Developments</h2>
+          </div>
+          <div class="card-body">
+            <ul class="card-list news-list" id="cardNews"></ul>
+          </div>
+        </div>
+
+      </div><!-- /dashboard-grid -->
+    </div><!-- /brief-output -->
+
+  </main>
+
+  <!-- About this tool -->
+  <section class="why-section">
+    <div class="why-inner">
+      <div class="why-eyebrow">How it works</div>
+      <h2 class="why-title">Built for strategists.<br>Designed to save time.</h2>
+      <div class="why-body">
+        <p>Company onboarding is one of the most time-intensive early steps in any engagement. This tool compresses it to seconds — select a company, choose your research intent, and receive a structured brief covering competitive positioning, market dynamics, ecosystem role, and strategic vulnerabilities. Pre-built briefs available for DigitalOcean, Uber, LinkedIn, Stripe, Shopify, and Apple.</p>
+      </div>
+      <div class="why-concepts">
+        <div class="concept-chip">Competitive Positioning</div>
+        <div class="concept-chip">Winner-Take-All Dynamics</div>
+        <div class="concept-chip">Network Effects</div>
+        <div class="concept-chip">Platform &amp; Ecosystem Mapping</div>
+        <div class="concept-chip">Market Structure Analysis</div>
+        <div class="concept-chip">Partnership Evaluation</div>
+        <div class="concept-chip">M&amp;A Diligence</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-brand">Company Research Companion</span>
+      </div>
+      <div class="footer-right">Columbia Business School · Technology Strategy · 2025</div>
+    </div>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

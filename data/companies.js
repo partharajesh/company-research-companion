@@ -1,0 +1,564 @@
+// Structured mock data for pre-built companies.
+// To add a new company: duplicate a block, update all fields, add aliases below.
+// To connect a live API: replace `lookupCompany()` with a fetch() call.
+
+export const mockData = {
+
+  // ── DigitalOcean ─────────────────────────────────────────
+  digitalocean: {
+    company: "DigitalOcean", ticker: "DOCN",
+    sector: "Cloud Infrastructure / B2B SaaS", lastUpdated: "Q4 2025",
+    strategicTakeaway: "The most credible challenger to the hyperscalers for developer and SMB workloads — winning on simplicity where AWS wins on breadth, but structurally constrained by a scale gap that makes feature parity impossible.",
+    visuals: {
+      accentColor: "#0069ff",
+      logoUrl: "https://logo.clearbit.com/digitalocean.com",
+      competitiveMap: {
+        xAxisLabel: "Customer Segment", xMin: "Enterprise", xMax: "SMB / Developer",
+        yAxisLabel: "Platform Approach", yMin: "Complex", yMax: "Simple",
+        highlightQuadrant: "top-right", highlightLabel: "Developer-Friendly Niche",
+        players: [
+          { name: "AWS",          abbr: "AWS", x: 16, y: 18, category: "rival" },
+          { name: "Azure",        abbr: "AZ",  x: 22, y: 26, category: "rival" },
+          { name: "GCP",          abbr: "GCP", x: 30, y: 33, category: "rival" },
+          { name: "IBM Cloud",    abbr: "IBM", x: 20, y: 22, category: "rival" },
+          { name: "Linode",       abbr: "LN",  x: 68, y: 70, category: "rival" },
+          { name: "Vultr",        abbr: "VU",  x: 72, y: 64, category: "rival" },
+          { name: "Hetzner",      abbr: "HZ",  x: 65, y: 78, category: "rival" },
+          { name: "DigitalOcean", abbr: "DO",  x: 87, y: 88, category: "focal" },
+        ]
+      },
+      wtaSpectrum: {
+        segments: [
+          { label: "Fragmented", position: 10 }, { label: "Winner-Take-Some", position: 38 },
+          { label: "Winner-Take-Most", position: 65 }, { label: "Winner-Take-All", position: 90 },
+        ],
+        marketPosition: 65, marketLabel: "Winner-Take-Most",
+        note: "Hyperscalers dominate enterprise; differentiated niches remain viable for focused players"
+      },
+      ecosystemNodes: [
+        { id: "fo",  label: "DigitalOcean",     type: "focal",    ring: 0 },
+        { id: "c1",  label: "Developers",        type: "customer", ring: 1 },
+        { id: "c2",  label: "Startups & SMBs",   type: "customer", ring: 1 },
+        { id: "pr1", label: "App Marketplace",   type: "product",  ring: 1 },
+        { id: "pa1", label: "Hugging Face",      type: "partner",  ring: 2 },
+        { id: "pa2", label: "ISV Partners",      type: "partner",  ring: 2 },
+        { id: "r1",  label: "AWS / Azure / GCP", type: "rival",    ring: 2 },
+      ]
+    },
+    overview: "DigitalOcean is a cloud infrastructure provider that deliberately targets developers, startups, and small-to-midsize businesses (SMBs) — the segments underserved by hyperscalers like AWS, Azure, and GCP. Founded in 2011 and headquartered in New York, the company built its brand on radical simplicity: predictable pricing, clear documentation, and a developer-first experience that larger competitors sacrificed in pursuit of enterprise complexity.",
+    businessModel: "Usage-based cloud infrastructure (IaaS/PaaS): compute (Droplets), managed databases, Kubernetes clusters, object storage, and AI/ML deployment products. Revenue is predominantly consumption-based with on-demand and reserved-instance pricing.",
+    targetCustomers: "Developers, early-stage startups, and SMBs — DigitalOcean's own segmentation framework (Learners, Builders, Scalers) maps the customer journey from individual developers experimenting with cloud to growing companies scaling production workloads. Enterprises are largely out of scope by design.",
+    positioning: "DigitalOcean competes on simplicity and developer experience, not raw feature breadth or price. While AWS offers 200+ services, DigitalOcean offers a curated set with predictable pricing — a deliberate value-curve inversion. Rivals include AWS, Azure, GCP (hyperscalers), Linode/Akamai, Vultr, and Hetzner.",
+    marketLandscape: "The cloud services market is a Winner-Take-Most (not Winner-Take-All) structure: hyperscalers dominate enterprise, but differentiated niches are viable and defensible. Cloud lowers barriers to entry for the very customers DigitalOcean serves. The AI/ML infrastructure wave creates both opportunity (AI-as-a-Service demand from SMBs) and threat (hyperscalers pushing AI tooling downstream). DigitalOcean's Hugging Face partnership and 1-Click Model deployment target this directly.",
+    ecosystemRole: "Infrastructure provider and developer platform — DigitalOcean sits at the base of the stack for thousands of SMB applications. It plays a complementor role to application-layer SaaS companies whose products run on its infrastructure. The Marketplace and App Platform create weak indirect network effects between developers and end-users.",
+    strengths: [
+      "Radical simplicity as a strategic choice — a deliberate value-curve inversion that attracts cost-sensitive, time-constrained developers",
+      "Strong brand loyalty among indie developers and SMBs who feel abandoned by hyperscalers",
+      "Predictable, transparent pricing reduces customer anxiety and sales friction",
+      "Developer community flywheel: tutorials are among the most-visited technical documentation on the web",
+      "AI/ML tailwinds: Hugging Face partnership, 1-Click Models, and GPU Droplets position DO for SMB AI demand"
+    ],
+    weaknesses: [
+      "Scale gap is structural: AWS, Azure, GCP have 10–20x the R&D investment, making feature parity impossible",
+      "Low multi-homing costs in cloud mean enterprise customers face little friction switching providers",
+      "Thin margin profile relative to hyperscalers limits ability to invest in growth marketing or price wars",
+      "Customer churn risk when 'Scalers' grow large enough to require hyperscaler capabilities",
+      "Dependent on AWS/Azure for underlying infrastructure in some edge regions — competing with direct rivals"
+    ],
+    lenses: {
+      general: {
+        focus: "DigitalOcean's core strategic bet is that simplicity and customer segment focus are durable competitive advantages. The Growing Deep vs. Growing Wide tension is the defining challenge: serve SMBs more deeply (AI, databases, managed services) or broaden upmarket. The first path leverages its brand; the second risks identity dilution.",
+        keyFrameworks: ["Value Curve Analysis", "Winner-Take-Most Dynamics", "B2B Platform: Growing Deep vs. Growing Wide", "Disruptive Innovation"]
+      },
+      partnership: {
+        focus: "DigitalOcean is a natural integration partner for developer tools, SaaS platforms, and AI model providers targeting SMBs. The Hugging Face partnership is a template: DigitalOcean provides infrastructure simplicity; the partner provides specialized capability. Key risk: dependency on a platform that itself depends on larger infrastructure providers.",
+        partnershipImplications: "For clients reaching SMB developers, DigitalOcean's Marketplace and community are high-leverage channels. Integration requires low-friction technical alignment (DO's API-first architecture helps). Caution around revenue-share terms — DigitalOcean's negotiating leverage vs. hyperscalers is limited.",
+        keyFrameworks: ["Indirect Network Effects via Marketplace", "Complement vs. Substitute positioning", "Ecosystem dependency mapping"]
+      },
+      investment: {
+        focus: "DigitalOcean is a pure-play SMB cloud infrastructure bet. Upside: underpenetrated global SMB cloud + AI demand from small developers. Downside: structural scale disadvantage vs. hyperscalers limits margin expansion; churn when companies scale up. Path to profitability depends on moving customers up the value curve and expanding ARPU via managed services and AI.",
+        investmentImplications: "Attractive niche infrastructure platform with loyal developer base and AI tailwinds. M&A angle: a hyperscaler or large SaaS company could acquire DO for its SMB customer base and developer community — a distribution asset that would cost more to build than to buy.",
+        keyFrameworks: ["B2B Platform Economies of Scale", "ARPU expansion (Growing Deep)", "Strategic acquisition rationale: distribution, customer base, brand"]
+      }
+    },
+    partnershipImplications: "DigitalOcean is an accessible, low-friction infrastructure partner for clients targeting SMB developers. The Marketplace provides distribution; the community provides reach. Best fit for dev-tools, AI model providers, and SaaS platforms serving early-stage companies. Primary risk: DigitalOcean customers who scale will eventually migrate to hyperscalers, reducing long-term partnership value.",
+    investmentImplications: "DigitalOcean trades at a discount to hyperscalers reflecting its scale limitation and churn exposure. Bull case: dominant SMB cloud brand + AI product expansion + global underpenetration. Bear case: commoditization of IaaS and hyperscaler feature creep into the SMB tier. Potential M&A target for a strategic buyer seeking SMB developer distribution.",
+    recentDevelopments: [
+      "2025: Launched GenAI Solutions, a managed AI deployment product for SMBs — positioning DigitalOcean as the accessible on-ramp for the SMB developer AI wave that hyperscalers are too complex to serve.",
+      "Q3 2025: Hit $800M ARR; management reaffirmed 'Growing Deep' over new customer acquisition — a signal that the SMB ceiling is real and ARPU expansion from existing customers is the primary growth lever.",
+      "2025: Expanded GPU Droplets capacity, becoming one of the most accessible H100 providers outside hyperscalers — a meaningful differentiator for developers priced out of AWS or GCP GPU instances.",
+      "2025: Restructured go-to-market around Learners, Builders, and Scalers tiers, introducing dedicated account management for Scalers — a direct attempt to reduce churn among high-value customers most at risk of graduating to hyperscalers."
+    ]
+  },
+
+  // ── Uber ─────────────────────────────────────────────────
+  uber: {
+    company: "Uber", ticker: "UBER",
+    sector: "Marketplace / Mobility / Logistics", lastUpdated: "Q4 2025",
+    strategicTakeaway: "Post-profitability and global, Uber has converted its growth-at-all-costs era into a scaled marketplace with durable ridesharing density, a subscription retention layer, and a high-margin advertising business that regional competitors cannot replicate.",
+    visuals: {
+      accentColor: "#000000",
+      logoUrl: "https://logo.clearbit.com/uber.com",
+      competitiveMap: {
+        xAxisLabel: "Geographic Reach", xMin: "Local / Regional", xMax: "Global",
+        yAxisLabel: "Platform Breadth", yMin: "Single Service", yMax: "Multi-Platform",
+        highlightQuadrant: "top-right", highlightLabel: "Global Multi-Platform",
+        players: [
+          { name: "Lyft",      abbr: "LY", x: 28, y: 28, category: "rival" },
+          { name: "Bolt",      abbr: "BO", x: 52, y: 30, category: "rival" },
+          { name: "Grab",      abbr: "GR", x: 58, y: 68, category: "rival" },
+          { name: "DoorDash",  abbr: "DD", x: 48, y: 45, category: "rival" },
+          { name: "Instacart", abbr: "IC", x: 38, y: 38, category: "rival" },
+          { name: "DiDi",      abbr: "DI", x: 55, y: 52, category: "rival" },
+          { name: "Uber",      abbr: "UB", x: 90, y: 90, category: "focal" },
+        ]
+      },
+      wtaSpectrum: {
+        segments: [
+          { label: "Fragmented", position: 10 }, { label: "Winner-Take-Some", position: 38 },
+          { label: "Winner-Take-Most", position: 65 }, { label: "Winner-Take-All", position: 90 },
+        ],
+        marketPosition: 65, marketLabel: "Winner-Take-Most",
+        note: "High supply-side multi-homing costs make ridesharing WTM; delivery is WTS due to low consumer switching friction"
+      },
+      ecosystemNodes: [
+        { id: "fo",  label: "Uber",               type: "focal",    ring: 0 },
+        { id: "c1",  label: "Riders",             type: "customer", ring: 1 },
+        { id: "c2",  label: "Drivers",            type: "customer", ring: 1 },
+        { id: "c3",  label: "Restaurants",        type: "customer", ring: 1 },
+        { id: "pr1", label: "Uber One",           type: "product",  ring: 1 },
+        { id: "pa1", label: "Enterprise Travel",  type: "partner",  ring: 2 },
+        { id: "r1",  label: "Lyft / DoorDash",   type: "rival",    ring: 2 },
+        { id: "pa2", label: "Waymo / Autonomy",  type: "partner",  ring: 2 },
+      ]
+    },
+    overview: "Uber is the world's largest on-demand mobility and delivery marketplace, operating in 70+ countries. It operates two primary platform businesses — Uber (ridesharing) and Uber Eats (food and grocery delivery) — with a growing freight and logistics layer. After years of losses, Uber achieved GAAP operating profitability in 2023 and has sustained profitable growth since, driven by scale efficiencies and improved supply-side productivity.",
+    businessModel: "Two-sided marketplace: Uber takes a commission (take rate) on each transaction between riders/eaters and drivers/couriers/restaurants. Revenue sources include service fees, Uber One subscription, advertising (Journey Ads), and freight. Profitability is driven by increasing trips-per-driver-hour (supply-side density) and growing high-margin revenue streams.",
+    targetCustomers: "Demand side: urban consumers across income tiers (ridesharing); urban/suburban consumers with disposable income (Eats). Supply side: gig-economy workers seeking flexible income (drivers, couriers). Restaurant and grocery partners (Eats). Uber's competitive position depends on supply-demand density in each local market.",
+    positioning: "Uber is the market leader in U.S. ridesharing (~70% share) and a strong #2 in U.S. food delivery behind DoorDash. Competitive advantage in ridesharing is local network density (shorter wait times, lower per-trip costs at scale). Key rivals: Lyft (ridesharing), DoorDash and Instacart (delivery), Grab and Bolt (international).",
+    marketLandscape: "Ridesharing exhibits Winner-Take-Most dynamics: high multi-homing costs on the supply side, strong necessity for intermediation, moderate standardization preference. Food delivery is Winner-Take-Some: multi-homing by consumers is easy, restaurant selection differentiates platforms. Regulatory risk is structural — gig worker classification laws (AB5, EU Digital Markets Act) could materially increase Uber's cost base.",
+    ecosystemRole: "Uber operates as a multi-sided marketplace and platform orchestrator. Platform synergies between ridesharing and Eats are meaningful but asymmetric: driver supply can serve both, and Uber One bundles both services to increase switching costs. Uber is also becoming an advertising platform — Journey Ads monetizes captive rider attention during trips.",
+    strengths: [
+      "Local density flywheel: more riders → more driver supply → shorter waits → more riders (compounding local network effect)",
+      "Supply-side productivity improvement is the primary driver of profitability — more trips per driver-hour reduces per-trip unit costs",
+      "Uber One subscription creates cross-platform lock-in between ridesharing and Eats, raising multi-homing costs",
+      "Advertising business (Journey Ads, Eats Ads) is high-margin and growing — a monetization layer competitors cannot easily replicate",
+      "Global footprint creates data advantages and operational know-how inaccessible to regional competitors"
+    ],
+    weaknesses: [
+      "Food delivery (Eats) remains structurally less profitable — incentive misalignment between Uber and couriers is a persistent cost issue",
+      "Multi-homing costs for riders are low — brand loyalty is thin and price elasticity is high",
+      "Gig worker regulation (AB5-style laws) remains an existential cost risk in California, EU, and other markets",
+      "Driver supply is price-sensitive and not captive — surge pricing and competitor bonuses can rapidly erode supply-side density",
+      "Self-driving disruption risk: if autonomous vehicles scale (Waymo, Tesla), Uber's driver-dependent model faces structural cost disadvantage"
+    ],
+    lenses: {
+      general: {
+        focus: "Uber's strategic position is defined by local network density and growing supply-side productivity. Ridesharing is Winner-Take-Most (high necessity for intermediation, high supply-side multi-homing costs); food delivery is Winner-Take-Some (low consumer multi-homing costs). This asymmetry means Uber should invest more aggressively in ridesharing moats while managing Eats for profitability rather than share.",
+        keyFrameworks: ["Winner-Take-Most vs. Winner-Take-Some", "Supply-Side Productivity (cost-per-trip)", "Platform Synergies (ridesharing + Eats)", "Local Network Effects"]
+      },
+      partnership: {
+        focus: "Uber is an infrastructure partner of choice for any business that depends on last-mile logistics or rider access. Delivery API integrations, white-label ride services, and advertising partnerships are the primary modalities. The key question: does Uber's local density in your target markets make it a more effective partner than building proprietary logistics?",
+        partnershipImplications: "Best fit for clients in quick-service restaurants, grocery, healthcare transport, corporate travel, and CPG. Integration is straightforward via Uber's API. Risk: Uber holds pricing power and can change take rates unilaterally — dependency on Uber logistics without contractual protection creates margin risk.",
+        keyFrameworks: ["Complement vs. Substitute", "Dependency Risk", "Channel partnership vs. build/buy decision"]
+      },
+      investment: {
+        focus: "Uber is a post-profitability, scaled marketplace with growing high-margin revenue layers. The thesis rests on: (1) ridesharing density as a near-durable moat, (2) ad revenue as margin expansion lever, (3) Uber One as a retention mechanism. Key risks: autonomous vehicle disruption, regulatory exposure, and Eats structural profitability.",
+        investmentImplications: "Core question: can Uber maintain ridesharing market share while growing Eats profitably and scaling the ad business? M&A likely focused on international market consolidation and logistics adjacencies. Autonomous vehicles are the long-term strategic wildcard — any scenario analysis must model Waymo-style scale on Uber's cost structure.",
+        keyFrameworks: ["Unit economics (cost-per-trip, take rate)", "Platform synergy value", "Autonomous vehicle strategic risk", "Advertising as margin expansion"]
+      }
+    },
+    partnershipImplications: "Uber is a high-leverage logistics and distribution partner for clients in food, grocery, healthcare transport, and corporate mobility. The Uber for Business product and Eats API enable white-label integrations. Primary partnership risks: take rate volatility, lack of exclusivity, and regulatory exposure in key markets.",
+    investmentImplications: "Uber has transitioned from growth-at-all-costs to a profitable marketplace with structural moats in ridesharing. Key value drivers: ridesharing density, ad revenue ramp, and Uber One subscription penetration. Key risks: autonomous vehicle disruption, gig worker classification costs, and DoorDash competition in Eats.",
+    recentDevelopments: [
+      "2025: Waymo partnership expanded to Austin and Atlanta, with Waymo vehicles bookable via the Uber app — converting Uber's most feared long-term threat (autonomous vehicles) into a distribution channel, a significant strategic repositioning.",
+      "Q3 2025: Advertising revenue crossed $1B annualised run-rate — confirming Journey Ads and Eats Ads as Uber's highest-margin growth segment, one that local competitors cannot replicate without Uber's scale and captive rider attention.",
+      "2025: Uber One surpassed 30M subscribers globally — reducing rider churn and driving cross-platform Eats attachment, strengthening the bundled value proposition against Lyft and DoorDash.",
+      "2025: Uber for Business grew 40% YoY as return-to-office normalised enterprise ground transport — a growing revenue stream with higher contract predictability and lower price sensitivity than consumer ride-sharing."
+    ]
+  },
+
+  // ── LinkedIn ──────────────────────────────────────────────
+  linkedin: {
+    company: "LinkedIn", ticker: "MSFT (subsidiary)",
+    sector: "Professional Network / B2B SaaS", lastUpdated: "Q4 2025",
+    strategicTakeaway: "The closest thing to a monopoly in professional networking — LinkedIn's 1.2B-member career graph and recruiter switching costs have remained durable against a decade of challengers.",
+    visuals: {
+      accentColor: "#0a66c2",
+      logoUrl: "https://logo.clearbit.com/linkedin.com",
+      competitiveMap: {
+        xAxisLabel: "Audience Profile", xMin: "Consumer / General", xMax: "Professional / B2B",
+        yAxisLabel: "Revenue Approach", yMin: "Ad-Supported / Free", yMax: "Subscription / B2B Revenue",
+        highlightQuadrant: "top-right", highlightLabel: "Professional Monetization",
+        players: [
+          { name: "Facebook/Meta",  abbr: "FB", x: 18, y: 22, category: "rival" },
+          { name: "Twitter/X",      abbr: "X",  x: 30, y: 28, category: "rival" },
+          { name: "Threads",        abbr: "TH", x: 22, y: 18, category: "rival" },
+          { name: "Indeed",         abbr: "IN", x: 68, y: 50, category: "rival" },
+          { name: "ZipRecruiter",   abbr: "ZR", x: 62, y: 48, category: "rival" },
+          { name: "Doximity",       abbr: "DX", x: 88, y: 72, category: "rival" },
+          { name: "Handshake",      abbr: "HS", x: 78, y: 52, category: "rival" },
+          { name: "LinkedIn",       abbr: "LI", x: 93, y: 90, category: "focal" },
+        ]
+      },
+      wtaSpectrum: {
+        segments: [
+          { label: "Fragmented", position: 10 }, { label: "Winner-Take-Some", position: 38 },
+          { label: "Winner-Take-Most", position: 65 }, { label: "Winner-Take-All", position: 90 },
+        ],
+        marketPosition: 88, marketLabel: "Winner-Take-All",
+        note: "Near-monopoly in professional networking — 1.2B member data moat and recruiter switching costs that rivals cannot easily displace"
+      },
+      revenueBreakdown: [
+        { label: "Talent Solutions",      pct: 44, color: "#0a66c2" },
+        { label: "Advertising",           pct: 31, color: "#378fe9" },
+        { label: "Premium Subscriptions", pct: 13, color: "#70b5f9" },
+        { label: "Learning Solutions",    pct:  6, color: "#b0d4fb" },
+        { label: "Other",                 pct:  6, color: "#e0eefd" },
+      ],
+      ecosystemNodes: [
+        { id: "fo",  label: "LinkedIn",           type: "focal",    ring: 0 },
+        { id: "c1",  label: "Members (1.2B)",     type: "customer", ring: 1 },
+        { id: "c2",  label: "Recruiters",         type: "customer", ring: 1 },
+        { id: "c3",  label: "Advertisers",        type: "customer", ring: 1 },
+        { id: "pr1", label: "LinkedIn Learning",  type: "product",  ring: 1 },
+        { id: "pa1", label: "Microsoft 365",      type: "partner",  ring: 2 },
+        { id: "r1",  label: "Indeed / ZipRec.",   type: "rival",    ring: 2 },
+        { id: "pa2", label: "OpenAI Jobs (2026)", type: "rival",    ring: 2 },
+      ]
+    },
+    overview: "LinkedIn is the world's dominant professional networking platform, with 1.2 billion members globally (2026). Originally a professional résumé-and-connection site, LinkedIn has evolved into a three-sided platform serving members, recruiters, and advertisers — and more recently a learning platform. Acquired by Microsoft in 2016 for $26.2 billion, LinkedIn operates as an independent entity within Microsoft's commercial cloud ecosystem.",
+    businessModel: "Multi-sided platform with four revenue streams: Talent Solutions (recruiter subscriptions and job postings, ~44%), Advertising (~31%), Premium Subscriptions (~13%), and Learning Solutions (~6%). The platform monetizes the 'needier side' — recruiters and advertisers pay; most members access core services free.",
+    targetCustomers: "Three primary sides: (1) Members — 1.2B professionals seeking career advancement; (2) Recruiters — corporate HR teams and independent recruiters using Talent Solutions to source passive candidates; (3) Advertisers — B2B marketers seeking professional audience targeting. LinkedIn Learning adds content creators as a fourth side.",
+    positioning: "LinkedIn holds a near-monopoly in professional networking. Its moat is 'Network Cover': the platform's ambiguous purpose (professional networking ≠ actively job hunting) allows passive job seekers to maintain profiles without signaling intent, giving recruiters access to talent they cannot reach elsewhere. Niche rivals (Doximity for physicians, Handshake for students) target specific segments.",
+    marketLandscape: "The global staffing market is ~$665B. The key threat is platform envelopment: Meta (Threads, Facebook Jobs) and TikTok have user scale far exceeding LinkedIn's, making envelopment theoretically possible. OpenAI's announced AI-powered jobs platform (expected 2026) is the most credible new threat, targeting LinkedIn's core Talent Solutions business.",
+    ecosystemRole: "LinkedIn is the professional identity layer of the internet — an ecosystem orchestrator for the professional world. For Microsoft, LinkedIn is the 'professional network' complement to Microsoft 365's 'professional cloud', creating a combined identity-productivity-hiring graph. LinkedIn Learning adds content creators and L&D teams as new platform sides.",
+    strengths: [
+      "Network Cover is a durable structural advantage — recruiters pay a premium to access passive talent that will never post on Indeed",
+      "1.2 billion member network creates a data moat that would take decades to replicate — career graphs, skills data, company graphs",
+      "Microsoft integration creates synergies: LinkedIn data enriches Microsoft 365 productivity tools, Copilot, and Dynamics CRM",
+      "Recruiter switching costs are very high — LinkedIn Talent Solutions is the 'Bloomberg terminal of recruiting'",
+      "Multi-sided revenue diversification insulates LinkedIn from any single revenue stream disruption"
+    ],
+    weaknesses: [
+      "Platform norms and role ambiguity: identity as both a professional network and a content feed creates governance challenges",
+      "Content quality degradation: post growth of 41% (2021–2023) has diluted professional signal — the feed increasingly resembles Facebook",
+      "LinkedIn Learning faces credible competition from Coursera, Udemy, and internal enterprise L&D platforms",
+      "OpenAI's jobs platform could disintermediate Talent Solutions if AI-based matching outperforms keyword/connection-based search",
+      "Over-reliance on Talent Solutions (~44% of revenue) creates concentration risk in a hiring downturn"
+    ],
+    lenses: {
+      general: {
+        focus: "LinkedIn's strategic position is best understood through multi-sided platform monetization: subsidize the side that supplies value (members, free access) and charge the side that demands it (recruiters, at premium). The platform expansion question — whether LinkedIn Learning strengthens or weakens the core recruiter-member network effect — is the defining strategic challenge.",
+        keyFrameworks: ["Multi-sided Platform Monetization (charge the 'needier side')", "Network Cover as value proposition", "Platform Scope Expansion Framework", "Envelopment threat analysis"]
+      },
+      partnership: {
+        focus: "LinkedIn is the most valuable B2B distribution platform available for reaching professional decision-makers. For clients in HR tech, sales enablement, professional development, or B2B SaaS, LinkedIn offers both an advertising channel and a potential API/integration partnership. The Microsoft integration creates co-selling opportunities via Dynamics 365, Teams, and Microsoft 365.",
+        partnershipImplications: "LinkedIn is a strong partner for clients in HR tech (ATS/HRIS integrations), B2B SaaS (LinkedIn Ads for pipeline generation), and professional development (Learning content partnerships). Primary risk: asymmetric leverage — LinkedIn controls the professional identity graph and can change API access terms.",
+        keyFrameworks: ["Ecosystem dependency and API risk", "Microsoft commercial cloud co-selling", "Indirect network effects (content creators + members + recruiters)"]
+      },
+      investment: {
+        focus: "LinkedIn is a cash-generating, high-margin business within Microsoft's commercial segment. The thesis rests on: (1) Talent Solutions growth in a recovering hiring market, (2) LinkedIn Learning ARPU expansion in enterprise L&D, (3) AI-enhanced recruiter products justifying premium pricing. Key risk: AI-native recruiting tools disrupting Talent Solutions.",
+        investmentImplications: "LinkedIn is best evaluated as a segment of Microsoft. An independent spinout would command a premium as a near-monopoly professional networking platform. Most important investment question: how AI-native recruiting tools affect the long-term growth rate of Talent Solutions — the highest-margin revenue segment.",
+        keyFrameworks: ["Multi-sided platform revenue diversification", "Switching cost analysis by revenue segment", "AI disruption risk to Talent Solutions", "Strategic value within Microsoft commercial cloud"]
+      }
+    },
+    partnershipImplications: "LinkedIn is one of the most powerful B2B distribution and data assets available. For clients in professional services, HR tech, or B2B SaaS, LinkedIn advertising and API partnerships offer unmatched professional audience targeting. Risk: dependency on LinkedIn's API terms and the platform's incentive to compete with adjacent products.",
+    investmentImplications: "As part of Microsoft, LinkedIn contributes ~$17B annually to commercial cloud revenue. Standalone, it would be valued as a near-monopoly professional networking platform. The most important investment question is how AI-native recruiting tools affect the long-term growth rate of Talent Solutions.",
+    recentDevelopments: [
+      "2025: LinkedIn data embedded natively into Microsoft 365 Copilot, Outlook, and Teams — deepening the Microsoft commercial flywheel and raising switching costs for enterprise users who now access LinkedIn insights inside their daily workflows.",
+      "2025: AI-assisted job matching and InMail drafting launched for Premium subscribers — lifting ARPU and conversion rates, signalling LinkedIn's strategy to justify premium pricing through AI productivity gains rather than pure network access.",
+      "2025: OpenAI announced an AI-native jobs platform for 2026 — the most credible new competitive threat to Talent Solutions in a decade, targeting the highest-margin segment of LinkedIn's revenue base.",
+      "Q3 2025: Content moderation challenges escalated as post volume hit record highs — advertiser concerns about feed quality emerged as a CPM risk, highlighting the tension between engagement growth and professional signal quality."
+    ]
+  },
+
+  // ── Stripe ────────────────────────────────────────────────
+  stripe: {
+    company: "Stripe", ticker: "Private",
+    sector: "Payments Infrastructure / FinTech", lastUpdated: "Q4 2025",
+    strategicTakeaway: "Developer loyalty has compounded into deep ecosystem lock-in across 195 countries, making Stripe the default payments infrastructure for internet businesses — with a pending IPO that will test whether that loyalty translates to durable enterprise margins.",
+    visuals: {
+      accentColor: "#635bff",
+      logoUrl: "https://logo.clearbit.com/stripe.com",
+      competitiveMap: {
+        xAxisLabel: "Customer Segment", xMin: "Enterprise / Bank-Led", xMax: "Developer / SMB",
+        yAxisLabel: "Platform Openness", yMin: "Closed / Proprietary", yMax: "Open / API-First",
+        highlightQuadrant: "top-right", highlightLabel: "Developer-First Payments",
+        players: [
+          { name: "PayPal",       abbr: "PP", x: 40, y: 35, category: "rival" },
+          { name: "Adyen",        abbr: "AD", x: 25, y: 45, category: "rival" },
+          { name: "Square/Block", abbr: "SQ", x: 58, y: 50, category: "rival" },
+          { name: "Braintree",    abbr: "BT", x: 38, y: 42, category: "rival" },
+          { name: "Worldpay",     abbr: "WP", x: 20, y: 25, category: "rival" },
+          { name: "Checkout.com", abbr: "CK", x: 30, y: 52, category: "rival" },
+          { name: "Stripe",       abbr: "ST", x: 85, y: 88, category: "focal" },
+        ]
+      },
+      wtaSpectrum: {
+        segments: [
+          { label: "Fragmented", position: 10 }, { label: "Winner-Take-Some", position: 38 },
+          { label: "Winner-Take-Most", position: 65 }, { label: "Winner-Take-All", position: 90 },
+        ],
+        marketPosition: 65, marketLabel: "Winner-Take-Most",
+        note: "High developer switching costs and ecosystem lock-in; enterprise payments remain fragmented by geography and vertical"
+      },
+      ecosystemNodes: [
+        { id: "fo",  label: "Stripe",            type: "focal",    ring: 0 },
+        { id: "c1",  label: "Developers / SaaS", type: "customer", ring: 1 },
+        { id: "c2",  label: "Merchants",         type: "customer", ring: 1 },
+        { id: "pr1", label: "Stripe Connect",    type: "product",  ring: 1 },
+        { id: "pr2", label: "Stripe Atlas",      type: "product",  ring: 1 },
+        { id: "pa1", label: "Visa / Mastercard", type: "partner",  ring: 2 },
+        { id: "r1",  label: "PayPal / Adyen",    type: "rival",    ring: 2 },
+        { id: "pa2", label: "Banking Partners",  type: "partner",  ring: 2 },
+      ]
+    },
+    overview: "Stripe is the world's leading developer-first payments infrastructure company, processing hundreds of billions in transactions annually for millions of businesses across 195 countries. Founded in 2010 by Patrick and John Collison, Stripe transformed online payments from a complex integration problem into a simple API call — and has since expanded into a full-stack financial services platform for internet businesses.",
+    businessModel: "Transaction fee-based: Stripe earns a percentage of every payment processed (2.9% + $0.30 standard; negotiated rates for enterprise). Revenue also comes from premium products: Stripe Billing (subscriptions), Stripe Connect (marketplace payouts), Stripe Radar (fraud), and Stripe Capital (lending).",
+    targetCustomers: "Primarily developers and technical founders at startups and internet businesses who need fast, reliable payment integration. Enterprise segment growing rapidly (Shopify, Amazon, Google pay via Stripe). Two-sided: merchants pay fees; end-customers use the checkout experience.",
+    positioning: "Stripe competes on developer experience, API reliability, and ecosystem breadth. Its core moat is developer loyalty: engineers who learn Stripe carry the preference to every new company they join. Adyen is the most credible rival in large enterprise; Square targets smaller merchants and in-person retail.",
+    marketLandscape: "The global payments market processes $10T+ annually but is highly fragmented by geography, vertical, and customer size. Online payments exhibit Winner-Take-Most dynamics: high developer multi-homing costs, strong standardization preference, and strong necessity for intermediation. Stripe's biggest structural risk is bank and card network disintermediation as real-time payment rails (FedNow, open banking) mature.",
+    ecosystemRole: "Stripe is a payment infrastructure platform — a foundational layer that thousands of SaaS products and marketplaces depend on. Stripe Connect has created a massive ecosystem of marketplace platforms built on Stripe's payout infrastructure. The company increasingly acts as a financial services layer (Atlas for incorporation, Capital for lending, Treasury for banking) on top of its payment rails.",
+    strengths: [
+      "Developer loyalty flywheel: engineers who learn Stripe advocate for it at every new company — organic, recurring acquisition that compounds with every startup wave",
+      "API quality and documentation are the industry gold standard — the benchmark that all competitors are measured against",
+      "Ecosystem lock-in through Stripe Connect: marketplace businesses built on Stripe's payout infrastructure face very high switching costs",
+      "Global infrastructure across 195 countries, local payment methods, and multi-currency support — near-impossible to replicate cheaply",
+      "Expanding product surface (Billing, Radar, Capital, Atlas) increases ARPU and switching costs across the customer lifecycle"
+    ],
+    weaknesses: [
+      "Pricing premium vs. regional processors — enterprise customers with scale can negotiate better rates with Adyen or in-house solutions",
+      "Private company status limits visibility into unit economics and may constrain large enterprise trust and due diligence",
+      "Geographic expansion is expensive and slow — local payment method integration requires regulatory and banking relationships in every market",
+      "Increasing competitive pressure from banks and card networks building developer-friendly APIs to disintermediate processors",
+      "Revenue concentration: a disproportionate share comes from a small number of very large internet businesses (Shopify, Amazon)"
+    ],
+    lenses: {
+      general: {
+        focus: "Stripe's strategic position is defined by developer ecosystem lock-in and API-first platform expansion. The core question is whether Stripe can maintain developer preference as it moves upmarket to enterprise (where Adyen is entrenched) and as banks/networks build their own developer-friendly rails. The 'Growing Deep' path (Capital, Treasury, Atlas) deepens financial services for existing customers vs. 'Growing Wide' through geographic expansion.",
+        keyFrameworks: ["Developer Ecosystem Lock-in", "Platform Scope Expansion (financial services layer)", "Winner-Take-Most Dynamics", "Disruption from below (Stripe disrupted incumbent processors)"]
+      },
+      partnership: {
+        focus: "Stripe is the default payment integration for any SaaS, marketplace, or platform business. Stripe Connect makes it the natural infrastructure for businesses with complex payout flows. Key consideration: Stripe is increasingly a competitor in financial services verticals it also enables — evaluate dependency risk if your client operates adjacent to Stripe Capital, Treasury, or Atlas.",
+        partnershipImplications: "Stripe Connect is the right integration for marketplace and platform businesses. Stripe's developer ecosystem and Radar fraud detection create genuine value beyond raw payment processing. Primary risk: Stripe may enter adjacent verticals your client operates in (lending via Capital, banking via Treasury).",
+        keyFrameworks: ["Complement vs. Substitute Risk", "API Dependency Mapping", "Ecosystem lock-in via Connect"]
+      },
+      investment: {
+        focus: "Stripe is one of the highest-valued private technology companies. The thesis centers on continued capture of growing internet economy payment volume, expansion into financial services adjacencies, and enterprise market penetration. Key risk: margin compression as enterprise scale requires custom pricing, and disintermediation threat from real-time payment rails.",
+        investmentImplications: "A Stripe IPO would test whether developer ecosystem loyalty translates to durable margin. Key metrics: enterprise revenue growth, Connect marketplace GMV, and Capital loan book performance. Strategic acquirer rationale: any bank or large financial services company would pay a premium for Stripe's developer distribution and global payment infrastructure.",
+        keyFrameworks: ["Transaction economics at scale", "Financial services ARPU expansion", "IPO/liquidity timing and valuation", "Real-time rail disruption risk"]
+      }
+    },
+    partnershipImplications: "Stripe is the most natural payments infrastructure partner for any internet business. For clients building SaaS, marketplace, or fintech products, Stripe offers unmatched developer experience and global reach. Primary risk: Stripe's tendency to expand into adjacent financial services categories — clients should monitor whether Stripe becomes a competitor in their core market.",
+    investmentImplications: "Stripe remains one of the most valuable private technology assets globally. Bull case: dominance of internet business payment volume + financial services superapp expansion. Bear case: margin compression at enterprise scale + disintermediation by real-time rails + valuation reset at IPO. High-value acquisition target for major banks, card networks, or enterprise software companies.",
+    recentDevelopments: [
+      "Late 2025: Acquired Bridge for ~$1.1B — its largest acquisition ever, signalling a strategic bet that stablecoin-based payment rails will become material and that Stripe intends to own the infrastructure layer before incumbents get there.",
+      "2025: Filed confidentially for IPO; public offering expected in H1 2026 at ~$65–70B — a significant reset from the $95B peak, testing whether developer loyalty and ecosystem lock-in translate to durable public market margins.",
+      "2025: Launched Stablecoin Financial Accounts globally — expanding Stripe's product surface outside traditional card rails where its take rate is not competed down by Visa and Mastercard.",
+      "Q3 2025: Revenue crossed $10B annualised with confirmed EBITDA profitability — a critical milestone that validates the financial services expansion thesis and strengthens the IPO narrative."
+    ]
+  },
+
+  // ── Shopify ───────────────────────────────────────────────
+  shopify: {
+    company: "Shopify", ticker: "SHOP",
+    sector: "E-Commerce Platform / SMB SaaS", lastUpdated: "Q4 2025",
+    strategicTakeaway: "The operating system for independent commerce — Shopify's App Store flywheel, Shop Pay network, and Capital lending product have built merchant lock-in that makes it the most defensible alternative to Amazon for the world's 2M+ small businesses.",
+    visuals: {
+      accentColor: "#96bf48",
+      logoUrl: "https://logo.clearbit.com/shopify.com",
+      competitiveMap: {
+        xAxisLabel: "Merchant Size", xMin: "Enterprise / Custom", xMax: "SMB / Self-Serve",
+        yAxisLabel: "Commerce Ecosystem", yMin: "Point Solution", yMax: "Full OS / Platform",
+        highlightQuadrant: "top-right", highlightLabel: "SMB Commerce OS",
+        players: [
+          { name: "WooCommerce",  abbr: "WC", x: 68, y: 52, category: "rival" },
+          { name: "BigCommerce",  abbr: "BC", x: 55, y: 62, category: "rival" },
+          { name: "Wix",          abbr: "WX", x: 72, y: 42, category: "rival" },
+          { name: "Squarespace",  abbr: "SS", x: 75, y: 38, category: "rival" },
+          { name: "Salesforce CC",abbr: "SF", x: 22, y: 58, category: "rival" },
+          { name: "Amazon",       abbr: "AZ", x: 40, y: 60, category: "rival" },
+          { name: "Shopify",      abbr: "SH", x: 82, y: 88, category: "focal" },
+        ]
+      },
+      wtaSpectrum: {
+        segments: [
+          { label: "Fragmented", position: 10 }, { label: "Winner-Take-Some", position: 38 },
+          { label: "Winner-Take-Most", position: 65 }, { label: "Winner-Take-All", position: 90 },
+        ],
+        marketPosition: 62, marketLabel: "Winner-Take-Most",
+        note: "Shopify dominates SMB e-commerce; enterprise segment is fragmented and enterprise-level switching costs are moderate"
+      },
+      ecosystemNodes: [
+        { id: "fo",  label: "Shopify",          type: "focal",    ring: 0 },
+        { id: "c1",  label: "Merchants",         type: "customer", ring: 1 },
+        { id: "c2",  label: "App Developers",    type: "customer", ring: 1 },
+        { id: "pr1", label: "Shop Pay",          type: "product",  ring: 1 },
+        { id: "pr2", label: "Shopify Fulfillment",type:"product",  ring: 1 },
+        { id: "pa1", label: "Meta / Google Ads", type: "partner",  ring: 2 },
+        { id: "r1",  label: "Amazon / WooComm.", type: "rival",    ring: 2 },
+        { id: "pa2", label: "Stripe / Payments", type: "partner",  ring: 2 },
+      ]
+    },
+    overview: "Shopify is the leading e-commerce platform for small and medium-sized businesses globally, powering over 2 million merchants across 175 countries. Founded in 2006 in Ottawa, Shopify has evolved from a simple online store builder into a complete commerce operating system — spanning online storefronts, point-of-sale, payments, logistics, and financing. It is frequently cited as one of the clearest examples of a platform company lowering barriers to entry for entrepreneurs.",
+    businessModel: "Dual revenue model: Subscription Solutions (monthly/annual SaaS fees from merchants) and Merchant Solutions (transaction fees via Shop Pay, payment processing, Shopify Capital loans, and shipping). Merchant Solutions is the faster-growing and higher-margin segment. The App Store ecosystem creates indirect network effects: more merchants attract more app developers, which improves the platform, which attracts more merchants.",
+    targetCustomers: "Primarily SMB merchants — individual entrepreneurs, direct-to-consumer brands, and growing retail businesses. Shopify Plus targets larger enterprise merchants ($1M+ GMV) with higher-tier SaaS. Also serves app developers (4,000+ in App Store) and sales channel partners (Meta, Google, TikTok, Amazon).",
+    positioning: "Shopify's competitive advantage is ecosystem breadth and merchant empowerment: it is the 'merchant OS' that lets businesses compete against Amazon without joining Amazon. Key rivals: WooCommerce (open-source, customizable), BigCommerce (mid-market), Wix/Squarespace (SMB website builders), and Amazon (direct competitor for consumer attention). Shopify has deliberately positioned itself as anti-Amazon infrastructure.",
+    marketLandscape: "Global e-commerce is a massive and still-growing market. Shopify occupies a Winner-Take-Most position in SMB e-commerce but faces fragmentation at enterprise. The key platform dynamic: Shopify's App Store creates strong indirect network effects that make the platform more valuable as the merchant base grows. Amazon is both the primary threat (competing for consumer transactions) and a channel partner (Shopify merchants can list on Amazon via integration).",
+    ecosystemRole: "Shopify is a classic platform orchestrator — it provides the infrastructure, and its ecosystem of merchants, app developers, payment processors, logistics providers, and sales channels create the value. The App Store is the ecosystem flywheel: more merchants → more app developers build integrations → platform becomes more capable → more merchants. Shopify's fulfillment network (Shopify Fulfillment Network) is an attempt to compete with Amazon's logistics advantage.",
+    strengths: [
+      "App Store ecosystem flywheel: 4,000+ apps create an expanding capability moat that small competitors cannot match",
+      "Shop Pay's checkout conversion rates are industry-leading — a defensible merchant retention tool built on network effects across millions of checkouts",
+      "Anti-Amazon narrative resonates strongly with merchants and investors who want independence from marketplace dependency",
+      "Shopify Capital provides lending to merchants based on their GMV history — a financial services moat built on proprietary merchant data",
+      "International and multi-channel expansion (TikTok Shop, YouTube Shopping integrations) extends Shopify's reach as commerce fragments across platforms"
+    ],
+    weaknesses: [
+      "Shopify's fulfillment network has been expensive and inconsistent — competing with Amazon on logistics is structurally disadvantageous",
+      "Merchant success is highly dependent on marketing spend (Meta, Google) — Shopify has limited control over customer acquisition costs for its own customers",
+      "Enterprise segment remains underpenetrated and faces credible competition from Salesforce Commerce Cloud and headless commerce platforms",
+      "High merchant churn at the SMB tier — many small merchants fail; Shopify's fortunes are tied to the health of entrepreneurship broadly",
+      "Increasing competition from TikTok Shop, which is building native commerce into social — a potential platform envelopment threat"
+    ],
+    lenses: {
+      general: {
+        focus: "Shopify is a textbook platform business with strong indirect network effects between merchants and app developers. The strategic tension is between deepening services for existing merchants (Payments, Capital, Fulfillment — Growing Deep) and expanding the merchant base globally (Growing Wide). The fulfillment network investment tests whether Shopify can compete with Amazon on logistics — a high-stakes bet on vertical integration.",
+        keyFrameworks: ["Indirect Network Effects (App Store)", "Platform Scope Expansion", "Growing Deep vs. Growing Wide", "Envelopment threat from TikTok/social commerce"]
+      },
+      partnership: {
+        focus: "Shopify is the essential integration for any e-commerce enablement company — payments, logistics, marketing, customer service, and analytics tools all need Shopify connectivity. The App Store is the primary partnership channel. For consulting clients building commerce-adjacent SaaS, Shopify integration is typically a requirement, not a choice. Key risk: Shopify may build native versions of successful third-party apps.",
+        partnershipImplications: "Shopify is a high-value integration partner for any commerce-adjacent SaaS company. App Store listing gives access to 2M+ merchants. Key risk: Shopify has a history of 'acqui-hiring' or natively building capabilities that previously required third-party apps — partners must maintain differentiation.",
+        keyFrameworks: ["App Store Indirect Network Effects", "Complement vs. Substitute Risk (Shopify builds in-house)", "Distribution via App Store vs. direct sales"]
+      },
+      investment: {
+        focus: "Shopify is a high-multiple growth story built on the thesis that global e-commerce GMV continues expanding and that Shopify captures an increasing share of merchant financial services (payments, lending, banking). The investment question is ARPU expansion: can Shopify grow revenue per merchant faster than it adds new (lower-GMV) merchants? Fulfillment remains the key open question on profitability.",
+        investmentImplications: "Shopify trades at a premium reflecting its network effects and merchant ecosystem. Bull case: GMV growth + financial services ARPU expansion + international penetration. Bear case: fulfillment losses persist + TikTok/social commerce disintermediation + Amazon partnership tensions. M&A rationale for a large bank or payments company: Shopify's merchant GMV data and Shop Pay network are unique financial services assets.",
+        keyFrameworks: ["Merchant ARPU trajectory", "GMV-based financial services flywheel", "Fulfillment unit economics", "Social commerce disruption risk"]
+      }
+    },
+    partnershipImplications: "Shopify is the most important integration in e-commerce SaaS. For clients building any commerce-adjacent product — payments, marketing, customer service, analytics, fulfillment — Shopify integration is typically mandatory. Primary risks: Shopify's tendency to build or acquire successful app categories natively, and the merchant base's sensitivity to Shopify pricing changes.",
+    investmentImplications: "Shopify is a premium-priced platform asset with strong network effects and an expanding financial services layer. Key value drivers: Shop Pay network growth, Shopify Capital loan book, and international merchant expansion. Key risks: fulfillment profitability, TikTok Shop platform competition, and merchant churn at the SMB tier. High-value acquisition target for a major bank, retailer, or logistics company.",
+    recentDevelopments: [
+      "2025: Launched Sidekick AI assistant inside the merchant dashboard — deepening platform stickiness by giving 2M+ merchants AI-powered marketing, pricing, and inventory tools that raise the cost of switching to less capable alternatives.",
+      "2025: Deepened TikTok Shop integration, making Shopify the fulfilment backend for TikTok's US and UK social commerce push — converting a potential platform envelopment threat into a distribution partnership.",
+      "Q2 2025: Wound down own warehouse operations and shifted to a partner-led fulfilment model — reducing capital intensity significantly and implicitly conceding that competing with Amazon on logistics was structurally disadvantageous.",
+      "Q3 2025: Revenue growth re-accelerated to 26% YoY; Merchant Solutions now represents over 70% of total revenue — confirming that financial services (payments, lending) are the primary value extraction engine, not subscription fees."
+    ]
+  },
+
+  // ── Apple ─────────────────────────────────────────────────
+  apple: {
+    company: "Apple", ticker: "AAPL",
+    sector: "Consumer Technology / Platform Ecosystem", lastUpdated: "Q4 2025",
+    strategicTakeaway: "A hardware company that has successfully engineered a services flywheel — the App Store, iCloud, and Apple Pay create switching costs so deep that regulators across three continents now consider them a structural competition concern.",
+    visuals: {
+      accentColor: "#1d1d1f",
+      logoUrl: "https://logo.clearbit.com/apple.com",
+      competitiveMap: {
+        xAxisLabel: "Business Model", xMin: "Hardware / Device-Led", xMax: "Software / Services-Led",
+        yAxisLabel: "Ecosystem Control", yMin: "Open / Android-Style", yMax: "Closed / Proprietary",
+        highlightQuadrant: "top-right", highlightLabel: "Proprietary Services Platform",
+        players: [
+          { name: "Samsung",   abbr: "SM", x: 30, y: 40, category: "rival" },
+          { name: "Google",    abbr: "GO", x: 62, y: 45, category: "rival" },
+          { name: "Microsoft", abbr: "MS", x: 65, y: 55, category: "rival" },
+          { name: "Meta",      abbr: "ME", x: 72, y: 35, category: "rival" },
+          { name: "Amazon",    abbr: "AZ", x: 58, y: 48, category: "rival" },
+          { name: "Sony",      abbr: "SO", x: 32, y: 50, category: "rival" },
+          { name: "Apple",     abbr: "AP", x: 78, y: 90, category: "focal" },
+        ]
+      },
+      wtaSpectrum: {
+        segments: [
+          { label: "Fragmented", position: 10 }, { label: "Winner-Take-Some", position: 38 },
+          { label: "Winner-Take-Most", position: 65 }, { label: "Winner-Take-All", position: 90 },
+        ],
+        marketPosition: 82, marketLabel: "Winner-Take-All",
+        note: "iOS is a near-monopoly premium platform — App Store control, high switching costs, and iMessage lock-in make WTA dynamics very strong in the premium segment"
+      },
+      revenueBreakdown: [
+        { label: "iPhone",          pct: 52, color: "#1d1d1f" },
+        { label: "Services",        pct: 24, color: "#555" },
+        { label: "Mac",             pct: 8,  color: "#888" },
+        { label: "Wearables / Home",pct: 9,  color: "#aaa" },
+        { label: "iPad",            pct: 7,  color: "#ccc" },
+      ],
+      ecosystemNodes: [
+        { id: "fo",  label: "Apple",            type: "focal",    ring: 0 },
+        { id: "c1",  label: "Consumers (iOS)",  type: "customer", ring: 1 },
+        { id: "c2",  label: "App Developers",   type: "customer", ring: 1 },
+        { id: "pr1", label: "App Store",        type: "product",  ring: 1 },
+        { id: "pr2", label: "iCloud / Services",type: "product",  ring: 1 },
+        { id: "pa1", label: "Google (Search $)",type: "partner",  ring: 2 },
+        { id: "r1",  label: "Android / Google", type: "rival",    ring: 2 },
+        { id: "pa2", label: "Enterprise IT",    type: "partner",  ring: 2 },
+      ]
+    },
+    overview: "Apple is the world's most valuable company, with a market capitalization consistently exceeding $3 trillion. It designs and sells premium consumer hardware (iPhone, Mac, iPad, Apple Watch) deeply integrated with a proprietary software and services ecosystem (iOS, macOS, App Store, iCloud, Apple Pay, Apple TV+). Apple's strategic transformation from a hardware company to a services-led platform business is one of the most important strategic pivots in corporate history.",
+    businessModel: "Dual engine: (1) premium hardware sales (iPhone = ~52% of revenue) built on a closed, integrated software/hardware stack; (2) rapidly growing Services segment (~24% of revenue) including App Store commissions, Apple Pay, iCloud, Apple TV+, and Apple Arcade. Services is higher-margin and more recurring than hardware, driving a structural shift in Apple's financial profile.",
+    targetCustomers: "Premium consumer segment globally — Apple deliberately does not compete for market share at the low end. Two-sided platform: consumers (buy devices and subscribe to services) and app developers (pay 15–30% commission to App Store). Enterprise IT is a growing third segment as iPhone and Mac penetration in corporate environments has increased significantly.",
+    positioning: "Apple holds an unmatched position in the premium consumer technology segment. The iPhone is the dominant premium smartphone globally; the Mac has nearly 25% of the U.S. laptop market. Apple's competitive advantage is the depth of its proprietary ecosystem: hardware, software, services, and developer relationships are all designed to keep users within the Apple stack. Primary rivals: Google/Android (smartphone), Microsoft (PC/cloud), and increasingly Meta (spatial computing/AI).",
+    marketLandscape: "Apple competes across multiple large markets simultaneously: smartphones ($500B+), personal computing, digital services (streaming, music, productivity), and payments. Within the premium tier, Apple exhibits near-Winner-Take-All dynamics: iOS device switching rates are very low (<15% annually), App Store is the only distribution channel for iOS apps, and iMessage creates meaningful social network lock-in in key markets (US, UK, Japan). The App Store faces serious regulatory threats (EU Digital Markets Act, DOJ antitrust) that could force third-party app stores and lower Apple's 15–30% commission rate.",
+    ecosystemRole: "Apple is the quintessential closed platform orchestrator — it controls the hardware, the OS, the app distribution (App Store), and increasingly the services layer. This vertical integration creates extraordinary switching costs for consumers and developers. Indirect network effects are strong: more iPhone users → more valuable for developers to build for iOS → higher-quality apps → more attractive platform for consumers. The Google Search deal (~$20B/year) represents a fascinating dependency: Apple's most profitable partner is also its most significant rival.",
+    strengths: [
+      "Unmatched brand premium and consumer loyalty — Apple commands the highest ASP in smartphones and generates the highest revenue per user of any consumer tech company",
+      "Deep ecosystem lock-in: iMessage, iCloud, AirDrop, AirPods, Apple Watch, and continuity features make switching to Android a significant life disruption",
+      "App Store control gives Apple a 15–30% tax on the entire iOS digital economy — a near-monopoly toll booth on $1T+ in annual transactions",
+      "Services revenue is growing faster than hardware and is significantly higher-margin — transforming Apple's financial profile from cyclical to recurring",
+      "Apple Silicon (M-series chips) has created a hardware performance and power-efficiency moat that no PC competitor has yet matched"
+    ],
+    weaknesses: [
+      "App Store antitrust exposure is structural: EU DMA has forced Apple to allow third-party app stores in Europe, threatening commission revenue across all markets over time",
+      "AI capabilities lag competitors: despite significant investment, Apple Intelligence is behind Google Gemini and OpenAI in benchmark performance, creating a strategic vulnerability",
+      "Extreme hardware revenue concentration in iPhone: a single product miss or supply chain disruption can materially affect the business",
+      "China dependency on both the supply side (manufacturing) and demand side (≈20% of iPhone sales) creates geopolitical and regulatory concentration risk",
+      "Google Search deal creates a paradox: Apple's largest single Services revenue source ($20B+ annually) depends on its primary AI rival's dominance in search"
+    ],
+    lenses: {
+      general: {
+        focus: "Apple's strategy is defined by ecosystem lock-in and premium positioning — a textbook example of managing indirect network effects between consumers and developers through tight platform control. The central strategic question for 2026 is whether Apple's closed platform strategy remains sustainable under regulatory pressure (EU DMA, DOJ antitrust) and AI competitive pressure (Google, OpenAI), or whether it must open up in ways that structurally erode its commission-based Services revenue.",
+        keyFrameworks: ["Closed Platform Strategy & Ecosystem Lock-in", "Indirect Network Effects (consumers ↔ developers)", "Services transformation (hardware to recurring revenue)", "Winner-Take-All dynamics in premium segment"]
+      },
+      partnership: {
+        focus: "Apple is simultaneously one of the best and most difficult partners in technology. The App Store provides unmatched distribution to 1B+ premium consumers, but the 15–30% commission and Apple's ability to clone successful apps ('Sherlocking') create existential risk for partners. The Google Search deal is a case study in how even the most capable technology companies sometimes need to partner with their primary rivals.",
+        partnershipImplications: "For clients building consumer-facing digital products, iOS distribution via the App Store is non-negotiable. Partnership considerations: commission rate negotiation (possible only at significant scale), Apple's increasing interest in financial services (Apple Pay Later, Apple Card) creates potential conflict for fintech clients, and Apple's privacy-first positioning (App Tracking Transparency) has reshaped mobile advertising economics.",
+        keyFrameworks: ["App Store as distribution moat vs. dependency risk", "'Sherlocking' risk (Apple replicates successful features)", "Privacy policy impact on partner advertising economics"]
+      },
+      investment: {
+        focus: "Apple's investment profile is exceptional: high margins, massive buybacks, and growing recurring Services revenue. The bull case centers on Services ARPU expansion, spatial computing (Vision Pro), and healthcare as a new platform. The bear case centers on App Store antitrust structural changes, China geopolitical risk, and AI competitive disadvantage threatening the Services growth rate.",
+        investmentImplications: "Apple is a core holding for most institutional investors due to capital return and brand moat. Incremental thesis question: can Services revenue grow fast enough to offset hardware maturity and App Store commission headwinds? Adjacency plays: Apple's entry into financial services (Apple Card, Pay Later), healthcare (Apple Watch, Health Records), and spatial computing represent the next platform bets.",
+        keyFrameworks: ["Services revenue multiple vs. hardware multiple", "App Store regulatory risk haircut", "Capital return program and buyback-driven EPS", "Platform extension into healthcare and financial services"]
+      }
+    },
+    partnershipImplications: "Apple is an essential distribution partner for any consumer-facing digital product — 1B+ premium users with high willingness to pay make iOS a mandatory target. Strategic risk: App Store commission (15–30%), Apple's ability to replicate partner features ('Sherlocking'), and App Tracking Transparency's impact on partners dependent on mobile advertising. Financial services, healthcare, and enterprise IT clients should additionally assess Apple's own product roadmap for direct competitive entry.",
+    investmentImplications: "Apple is the world's largest company by market cap and a core blue-chip holding. The Services segment transformation (toward recurring, high-margin revenue) is the primary value driver for the next decade. Key risks: App Store antitrust regulatory changes, China concentration, and AI capability gap. M&A rationale from a buyer's perspective: Apple's distribution, brand, and consumer data would be the most valuable single acquisition in technology history — and precisely why it is unlikely to be acquired.",
+    recentDevelopments: [
+      "2025: Apple Intelligence rolled out across iPhone 16 and M-series Mac, with EU launch delayed by DMA review — underscoring that Apple's closed platform strategy, which drives most of its Services margin, is under coordinated regulatory pressure across multiple jurisdictions.",
+      "2025: EU Digital Markets Act enforcement required Apple to allow third-party app stores and alternative payments in Europe — a structural precedent that, if extended globally, would materially compress App Store commission revenue.",
+      "Q3 2025: DOJ antitrust case against the Google Search default deal advanced — Apple faces risk of losing $20B+ in annual Services revenue, exposing the paradox of its most profitable partner being its primary AI rival.",
+      "2025: Vision Pro sales came in below initial targets; production forecasts quietly reduced — pushing the spatial computing timeline further out and raising questions about Apple's next hardware category before the mass-market version arrives in 2027."
+    ]
+  },
+
+};
+
+// ── Company lookup ───────────────────────────────────────────
+export function lookupCompany(input) {
+  const normalized = input.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  const aliases = {
+    digitalocean: 'digitalocean', docn: 'digitalocean', do: 'digitalocean',
+    uber: 'uber', ubereats: 'uber',
+    linkedin: 'linkedin', lnkd: 'linkedin',
+    stripe: 'stripe', stripecom: 'stripe',
+    shopify: 'shopify', shop: 'shopify',
+    apple: 'apple', aapl: 'apple', applecom: 'apple',
+  };
+
+  const key = aliases[normalized];
+  if (key && mockData[key]) {
+    return { found: true, data: mockData[key] };
+  }
+  return { found: false, data: null };
+}
