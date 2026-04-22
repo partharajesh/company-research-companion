@@ -886,6 +886,11 @@ body {
   border-top-width: 4px;
   box-shadow: var(--shadow-lift);
 }
+/* Cap viz height in inline-featured cards so paired-row heights stay balanced */
+.card-featured-inline .competitive-map-wrap svg,
+.card-featured-inline .ecosystem-wrap svg {
+  max-height: 230px;
+}
 
 /* ─── M&A Deal Thesis block (brief header) ───────── */
 .deal-thesis-block {

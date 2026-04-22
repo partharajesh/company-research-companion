@@ -51,8 +51,8 @@ const SECTION_CONFIG = {
       { id: 'sec-overview',    title: 'Company Overview',                  nav: 'Overview'     },
       { id: 'sec-ecosystem',   title: 'Ecosystem & Partnership Fit',       nav: 'Fit'          },
       { id: 'sec-strengths',   title: 'Strengths & Partnership Fit',       nav: 'Synergies'    },
-      { id: 'sec-positioning', title: 'Competitive Landscape',             nav: 'Landscape'    },
-      { id: 'sec-market',      title: 'Market & Demand Context',           nav: 'Market'       },
+      { id: 'sec-positioning', title: 'Alternative Partners & Substitutes', nav: 'Alternatives' },
+      { id: 'sec-market',      title: 'Demand Context & Channel Economics', nav: 'Economics'   },
       { id: 'sec-weaknesses',  title: 'Dependencies & Integration Risks',  nav: 'Integration'  },
       { id: 'sec-diligence',   title: 'Partnership Diligence',             nav: 'Diligence'    },
       { id: 'sec-news',        title: 'Recent Developments',               nav: 'Developments' },
@@ -89,8 +89,6 @@ const demoButtons   = document.querySelectorAll('.btn-demo');
 const briefHeader   = document.getElementById('briefHeader');
 const aiNotice      = document.getElementById('aiNotice');
 const aiNoticeText  = document.getElementById('aiNoticeText');
-const partnerRow       = document.getElementById('partnerRow');
-const partnerInput     = document.getElementById('partnerInput');
 const intentDescriptor = document.getElementById('intentDescriptor');
 const frameworksRow    = document.getElementById('frameworksRow');
 const frameworksChips  = document.getElementById('frameworksChips');
@@ -207,8 +205,6 @@ function applyIntent(intent, data) {
   if (intentDescriptor) intentDescriptor.textContent = cfg.descriptor;
 
   // Show/hide partner input row
-  if (partnerRow) partnerRow.hidden = intent !== 'partnership';
-
   // Reset all cards, then apply per-mode order + titles from sections array
   ALL_SECTION_IDS.forEach(id => {
     const el = document.getElementById(id);
@@ -864,7 +860,6 @@ companyInput.addEventListener('input', () => {
 intentTabs.forEach(tab => {
   tab.addEventListener('click', () => {
     currentIntent = tab.dataset.intent;
-    if (partnerRow) partnerRow.hidden = currentIntent !== 'partnership';
     if (intentDescriptor) intentDescriptor.textContent = INTENT_CONFIG[currentIntent].descriptor;
     intentTabs.forEach(t => {
       t.classList.toggle('active', t.dataset.intent === currentIntent);
