@@ -243,13 +243,52 @@ async function generate(companyName) {
     showBrief();
   } else {
     showEmpty();
-    inputError.textContent = `No pre-built brief available for "${trimmed}". Try one of the companies above.`;
-    companyInput.classList.add('error');
+    openProtoModal();
   }
 
   generateBtn.disabled = false;
   if (!briefOutput.hidden) briefOutput.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+// ─── Prototype Modal ──────────────────────────────────────────
+const protoModal        = document.getElementById('protoModal');
+const protoModalExplore = document.getElementById('protoModalExplore');
+const protoModalClose   = document.getElementById('protoModalClose');
+
+function openProtoModal() {
+  protoModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  protoModalExplore.focus();
+}
+
+function closeProtoModal() {
+  protoModal.hidden = true;
+  document.body.style.overflow = '';
+  companyInput.focus();
+}
+
+protoModalClose.addEventListener('click', closeProtoModal);
+
+protoModalExplore.addEventListener('click', () => {
+  closeProtoModal();
+  // Scroll to the demo row and briefly highlight it
+  const demoRow = document.querySelector('.demo-row');
+  if (demoRow) {
+    demoRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    demoRow.classList.add('demo-row-highlight');
+    setTimeout(() => demoRow.classList.remove('demo-row-highlight'), 1200);
+  }
+});
+
+// Close on overlay click (outside the modal card)
+protoModal.addEventListener('click', e => {
+  if (e.target === protoModal) closeProtoModal();
+});
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !protoModal.hidden) closeProtoModal();
+});
 
 // ─── Logo ─────────────────────────────────────────────────────
 function renderLogo(url, company, accent) {

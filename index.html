@@ -297,6 +297,23 @@
     </div>
   </footer>
 
+  <!-- Prototype Limitation Modal -->
+  <div id="protoModal" class="proto-modal-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="protoModalTitle">
+    <div class="proto-modal">
+      <div class="proto-modal-eyebrow">Company Research Companion</div>
+      <h2 class="proto-modal-title" id="protoModalTitle">This is a prototype</h2>
+      <div class="proto-modal-body">
+        <p class="proto-modal-text">The current version includes curated sample briefs for six selected companies. Live brief generation for any company would require a secure backend API integration — and API keys should not be exposed directly in a browser-based frontend.</p>
+        <p class="proto-modal-text">This prototype therefore limits generation to pre-built companies: DigitalOcean, Uber, LinkedIn, Stripe, Shopify, and Apple.</p>
+      </div>
+      <div class="proto-modal-actions">
+        <button id="protoModalExplore" class="proto-modal-btn-primary">Explore Sample Briefs</button>
+        <button id="protoModalClose" class="proto-modal-btn-secondary">Close</button>
+      </div>
+      <p class="proto-modal-footnote">Future versions could support live company generation through secure server-side API integration.</p>
+    </div>
+  </div>
+
   <script type="module" src="app.js"></script>
 </body>
 </html>
