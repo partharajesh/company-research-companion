@@ -174,12 +174,6 @@ function populateBrief(data) {
   fields.overview.textContent        = data.overview;
   fields.businessModel.textContent   = data.businessModel;
   fields.targetCustomers.textContent = data.targetCustomers;
-  fields.positioning.textContent     = data.positioning;
-  fields.market.textContent          = data.marketLandscape;
-  fields.ecosystem.textContent       = data.ecosystemRole;
-
-  renderList(fields.strengths,  data.strengths);
-  renderList(fields.weaknesses, data.weaknesses);
   renderNewsList(fields.news, data.recentDevelopments || []);
 
   renderCompetitiveMap(fields.vizMap, v.competitiveMap);
@@ -261,6 +255,17 @@ function applyIntent(intent, data) {
   if (fields.diligence) {
     const questions = data?.lenses?.[lensKey]?.diligenceQuestions || [];
     renderOrderedList(fields.diligence, questions);
+  }
+
+  // Lens-specific content (positioning, market, ecosystem, strengths, weaknesses)
+  // Each falls back to the shared top-level field when no lens override exists
+  if (data) {
+    const lensData = data.lenses?.[lensKey] || {};
+    if (fields.positioning) fields.positioning.textContent = lensData.positioning || data.positioning || '';
+    if (fields.market)      fields.market.textContent      = lensData.market      || data.marketLandscape || '';
+    if (fields.ecosystem)   fields.ecosystem.textContent   = lensData.ecosystem   || data.ecosystemRole || '';
+    renderList(fields.strengths,  lensData.strengths  || data.strengths  || []);
+    renderList(fields.weaknesses, lensData.weaknesses || data.weaknesses || []);
   }
 
   // Active intent tab
