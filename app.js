@@ -254,6 +254,7 @@ async function generate(companyName) {
 const protoModal        = document.getElementById('protoModal');
 const protoModalExplore = document.getElementById('protoModalExplore');
 const protoModalClose   = document.getElementById('protoModalClose');
+const protoModalX       = document.getElementById('protoModalX');
 
 function openProtoModal() {
   protoModal.hidden = false;
@@ -268,6 +269,7 @@ function closeProtoModal() {
 }
 
 protoModalClose.addEventListener('click', closeProtoModal);
+protoModalX.addEventListener('click', closeProtoModal);
 
 protoModalExplore.addEventListener('click', () => {
   closeProtoModal();
