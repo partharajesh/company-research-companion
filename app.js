@@ -25,84 +25,53 @@ const INTENT_CONFIG = {
   },
 };
 
+// Each entry: { id, title (card heading), nav (jump-nav label) }
+// title and nav live together — if you rename a title, update nav in the same line.
 const SECTION_CONFIG = {
   competitive: {
     featured: 'sec-positioning',
     featuredFullWidth: false,
-    order: ['sec-overview', 'sec-positioning', 'sec-market', 'sec-strengths', 'sec-weaknesses', 'sec-ecosystem', 'sec-diligence', 'sec-news'],
-    titles: {
-      'sec-overview':    'Company Overview',
-      'sec-positioning': 'Competitive Positioning',
-      'sec-market':      'Market Landscape',
-      'sec-ecosystem':   'Ecosystem & Platform Role',
-      'sec-strengths':   'Strengths & Sources of Advantage',
-      'sec-weaknesses':  'Vulnerabilities & Attack Vectors',
-      'sec-diligence':   'Key Diligence Questions',
-      'sec-news':        'Recent Developments',
-    },
-    navLabels: {
-      'sec-overview':    'Overview',
-      'sec-positioning': 'Positioning',
-      'sec-market':      'Market',
-      'sec-strengths':   'Strengths',
-      'sec-weaknesses':  'Risks',
-      'sec-ecosystem':   'Ecosystem',
-      'sec-diligence':   'Diligence',
-      'sec-news':        'Developments',
-    },
     focusLabel: 'Competitive Analysis',
+    sections: [
+      { id: 'sec-overview',    title: 'Company Overview',                  nav: 'Overview'     },
+      { id: 'sec-positioning', title: 'Competitive Positioning',           nav: 'Positioning'  },
+      { id: 'sec-market',      title: 'Market Landscape',                  nav: 'Market'       },
+      { id: 'sec-strengths',   title: 'Strengths & Sources of Advantage',  nav: 'Strengths'    },
+      { id: 'sec-weaknesses',  title: 'Vulnerabilities & Attack Vectors',  nav: 'Risks'        },
+      { id: 'sec-ecosystem',   title: 'Ecosystem & Platform Role',         nav: 'Ecosystem'    },
+      { id: 'sec-diligence',   title: 'Key Diligence Questions',           nav: 'Diligence'    },
+      { id: 'sec-news',        title: 'Recent Developments',               nav: 'Developments' },
+    ],
   },
   partnership: {
     featured: 'sec-ecosystem',
     featuredFullWidth: false,
-    order: ['sec-overview', 'sec-ecosystem', 'sec-strengths', 'sec-positioning', 'sec-market', 'sec-weaknesses', 'sec-diligence', 'sec-news'],
-    titles: {
-      'sec-overview':    'Company Overview',
-      'sec-positioning': 'Competitive Landscape',
-      'sec-market':      'Market & Demand Context',
-      'sec-ecosystem':   'Ecosystem & Partnership Fit',
-      'sec-strengths':   'Strengths & Partnership Fit',
-      'sec-weaknesses':  'Dependencies & Integration Risks',
-      'sec-diligence':   'Partnership Diligence',
-      'sec-news':        'Recent Developments',
-    },
-    navLabels: {
-      'sec-overview':    'Overview',
-      'sec-ecosystem':   'Fit',
-      'sec-strengths':   'Synergies',
-      'sec-positioning': 'Landscape',
-      'sec-market':      'Market',
-      'sec-weaknesses':  'Risks',
-      'sec-diligence':   'Diligence',
-      'sec-news':        'Developments',
-    },
     focusLabel: 'Partnership Analysis',
+    sections: [
+      { id: 'sec-overview',    title: 'Company Overview',                  nav: 'Overview'     },
+      { id: 'sec-ecosystem',   title: 'Ecosystem & Partnership Fit',       nav: 'Fit'          },
+      { id: 'sec-strengths',   title: 'Strengths & Partnership Fit',       nav: 'Synergies'    },
+      { id: 'sec-positioning', title: 'Competitive Landscape',             nav: 'Landscape'    },
+      { id: 'sec-market',      title: 'Market & Demand Context',           nav: 'Market'       },
+      { id: 'sec-weaknesses',  title: 'Dependencies & Integration Risks',  nav: 'Integration'  },
+      { id: 'sec-diligence',   title: 'Partnership Diligence',             nav: 'Diligence'    },
+      { id: 'sec-news',        title: 'Recent Developments',               nav: 'Developments' },
+    ],
   },
   ma: {
     featured: 'sec-strengths',
     featuredFullWidth: true,
-    order: ['sec-overview', 'sec-strengths', 'sec-weaknesses', 'sec-positioning', 'sec-market', 'sec-ecosystem', 'sec-diligence', 'sec-news'],
-    titles: {
-      'sec-overview':    'Company Overview',
-      'sec-positioning': 'Competitive Moat',
-      'sec-market':      'Market Opportunity',
-      'sec-ecosystem':   'Platform & Ecosystem Defensibility',
-      'sec-strengths':   'Value Drivers & Investment Case',
-      'sec-weaknesses':  'Risks & Concentration Factors',
-      'sec-diligence':   'M&A Diligence Priorities',
-      'sec-news':        'Recent Developments',
-    },
-    navLabels: {
-      'sec-overview':    'Overview',
-      'sec-strengths':   'Value Drivers',
-      'sec-weaknesses':  'Risks',
-      'sec-positioning': 'Moat',
-      'sec-market':      'Market',
-      'sec-ecosystem':   'Platform',
-      'sec-diligence':   'Diligence',
-      'sec-news':        'Developments',
-    },
     focusLabel: 'M&A Analysis',
+    sections: [
+      { id: 'sec-overview',    title: 'Company Overview',                  nav: 'Overview'      },
+      { id: 'sec-strengths',   title: 'Value Drivers & Investment Case',   nav: 'Value Drivers' },
+      { id: 'sec-weaknesses',  title: 'Risks & Concentration Factors',     nav: 'Risks'         },
+      { id: 'sec-positioning', title: 'Competitive Moat',                  nav: 'Moat'          },
+      { id: 'sec-market',      title: 'Market Opportunity',                nav: 'Market'        },
+      { id: 'sec-ecosystem',   title: 'Platform & Ecosystem Defensibility',nav: 'Ecosystem'     },
+      { id: 'sec-diligence',   title: 'M&A Diligence Priorities',          nav: 'Diligence'     },
+      { id: 'sec-news',        title: 'Recent Developments',               nav: 'Developments'  },
+    ],
   },
 };
 
@@ -225,6 +194,7 @@ function populateBrief(data) {
 }
 
 // ─── Apply Intent ─────────────────────────────────────────────
+// All section IDs across all modes — used to reset state before re-applying
 const ALL_SECTION_IDS = ['sec-overview', 'sec-positioning', 'sec-market', 'sec-ecosystem', 'sec-strengths', 'sec-weaknesses', 'sec-diligence', 'sec-news'];
 
 function applyIntent(intent, data) {
@@ -239,27 +209,24 @@ function applyIntent(intent, data) {
   // Show/hide partner input row
   if (partnerRow) partnerRow.hidden = intent !== 'partnership';
 
-  // Apply CSS order + clear/set featured class
+  // Reset all cards, then apply per-mode order + titles from sections array
   ALL_SECTION_IDS.forEach(id => {
     const el = document.getElementById(id);
+    if (el) { el.classList.remove('card-featured', 'card-featured-inline'); el.style.order = 99; }
+  });
+
+  scfg.sections.forEach(({ id, title }, idx) => {
+    const el = document.getElementById(id);
     if (!el) return;
-    el.classList.remove('card-featured', 'card-featured-inline');
-    const idx = scfg.order.indexOf(id);
-    el.style.order = idx >= 0 ? idx : 99;
+    el.style.order = idx;
+    const titleEl = el.querySelector('.card-title');
+    if (titleEl) titleEl.textContent = title;
   });
 
   const featuredEl = document.getElementById(scfg.featured);
   if (featuredEl) {
     featuredEl.classList.add(scfg.featuredFullWidth ? 'card-featured' : 'card-featured-inline');
   }
-
-  // Update card titles
-  Object.entries(scfg.titles).forEach(([id, title]) => {
-    const cardEl = document.getElementById(id);
-    if (!cardEl) return;
-    const titleEl = cardEl.querySelector('.card-title');
-    if (titleEl) titleEl.textContent = title;
-  });
 
   // Lens focus badge — clear all stale badges first, then add to current featured card
   document.querySelectorAll('.lens-focus-badge').forEach(b => b.remove());
@@ -312,9 +279,7 @@ function applyIntent(intent, data) {
 
 // ─── Dynamic card numbering ───────────────────────────────────
 function updateCardNumbers() {
-  // Sort by CSS order value so numbers match visual position
-  const scfg = SECTION_CONFIG[currentIntent];
-  scfg.order.forEach((id, idx) => {
+  SECTION_CONFIG[currentIntent].sections.forEach(({ id }, idx) => {
     const card = document.getElementById(id);
     if (!card || card.hidden) return;
     const numEl = card.querySelector('.card-num');
@@ -977,7 +942,8 @@ function buildJumpNav(data, intent) {
   const activeIntent = intent || currentIntent;
   const scfg = SECTION_CONFIG[activeIntent];
 
-  const sections = scfg.order.map(id => ({ id, label: scfg.navLabels[id] || id }));
+  // Derive nav links directly from the sections array — title and nav label stay in sync
+  const sections = scfg.sections.map(({ id, nav }) => ({ id, label: nav }));
 
   navInner.innerHTML = sections.map((s, i) =>
     (i > 0 ? '<span class="jump-nav-sep" aria-hidden="true">·</span>' : '') +
