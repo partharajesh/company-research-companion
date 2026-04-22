@@ -28,6 +28,7 @@ const INTENT_CONFIG = {
 const SECTION_CONFIG = {
   competitive: {
     featured: 'sec-positioning',
+    featuredFullWidth: false,
     order: ['sec-overview', 'sec-positioning', 'sec-market', 'sec-strengths', 'sec-weaknesses', 'sec-ecosystem', 'sec-diligence', 'sec-news'],
     titles: {
       'sec-overview':    'Company Overview',
@@ -39,10 +40,21 @@ const SECTION_CONFIG = {
       'sec-diligence':   'Key Diligence Questions',
       'sec-news':        'Recent Developments',
     },
+    navLabels: {
+      'sec-overview':    'Overview',
+      'sec-positioning': 'Positioning',
+      'sec-market':      'Market',
+      'sec-strengths':   'Strengths',
+      'sec-weaknesses':  'Risks',
+      'sec-ecosystem':   'Ecosystem',
+      'sec-diligence':   'Diligence',
+      'sec-news':        'Developments',
+    },
     focusLabel: 'Competitive Analysis',
   },
   partnership: {
     featured: 'sec-ecosystem',
+    featuredFullWidth: false,
     order: ['sec-overview', 'sec-ecosystem', 'sec-strengths', 'sec-positioning', 'sec-market', 'sec-weaknesses', 'sec-diligence', 'sec-news'],
     titles: {
       'sec-overview':    'Company Overview',
@@ -54,10 +66,21 @@ const SECTION_CONFIG = {
       'sec-diligence':   'Partnership Diligence',
       'sec-news':        'Recent Developments',
     },
+    navLabels: {
+      'sec-overview':    'Overview',
+      'sec-ecosystem':   'Fit',
+      'sec-strengths':   'Synergies',
+      'sec-positioning': 'Landscape',
+      'sec-market':      'Market',
+      'sec-weaknesses':  'Risks',
+      'sec-diligence':   'Diligence',
+      'sec-news':        'Developments',
+    },
     focusLabel: 'Partnership Analysis',
   },
   ma: {
     featured: 'sec-strengths',
+    featuredFullWidth: true,
     order: ['sec-overview', 'sec-strengths', 'sec-weaknesses', 'sec-positioning', 'sec-market', 'sec-ecosystem', 'sec-diligence', 'sec-news'],
     titles: {
       'sec-overview':    'Company Overview',
@@ -68,6 +91,16 @@ const SECTION_CONFIG = {
       'sec-weaknesses':  'Risks & Concentration Factors',
       'sec-diligence':   'M&A Diligence Priorities',
       'sec-news':        'Recent Developments',
+    },
+    navLabels: {
+      'sec-overview':    'Overview',
+      'sec-strengths':   'Value Drivers',
+      'sec-weaknesses':  'Risks',
+      'sec-positioning': 'Moat',
+      'sec-market':      'Market',
+      'sec-ecosystem':   'Platform',
+      'sec-diligence':   'Diligence',
+      'sec-news':        'Developments',
     },
     focusLabel: 'M&A Analysis',
   },
@@ -109,8 +142,10 @@ const fields = {
   ecosystem:       document.getElementById('cardEcosystem'),
   strengths:       document.getElementById('cardStrengths'),
   weaknesses:      document.getElementById('cardWeaknesses'),
-  diligence:       document.getElementById('cardDiligence'),
-  lensSummary:     document.getElementById('briefLensSummary'),
+  diligence:           document.getElementById('cardDiligence'),
+  lensSummary:         document.getElementById('briefLensSummary'),
+  dealThesisBlock:     document.getElementById('dealThesisBlock'),
+  dealThesisConclusion:document.getElementById('dealThesisConclusion'),
   news:            document.getElementById('cardNews'),
   vizMap:          document.getElementById('vizCompetitiveMap'),
   vizWta:          document.getElementById('vizWtaSpectrum'),
@@ -208,13 +243,15 @@ function applyIntent(intent, data) {
   ALL_SECTION_IDS.forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
-    el.classList.remove('card-featured');
+    el.classList.remove('card-featured', 'card-featured-inline');
     const idx = scfg.order.indexOf(id);
     el.style.order = idx >= 0 ? idx : 99;
   });
 
   const featuredEl = document.getElementById(scfg.featured);
-  if (featuredEl) featuredEl.classList.add('card-featured');
+  if (featuredEl) {
+    featuredEl.classList.add(scfg.featuredFullWidth ? 'card-featured' : 'card-featured-inline');
+  }
 
   // Update card titles
   Object.entries(scfg.titles).forEach(([id, title]) => {
@@ -242,6 +279,11 @@ function applyIntent(intent, data) {
     fields.lensSummary.textContent = focusText;
     fields.lensSummary.hidden = !focusText;
   }
+
+  // M&A deal thesis block
+  const dealConclusion = data?.lenses?.investment?.dealConclusion || '';
+  if (fields.dealThesisBlock) fields.dealThesisBlock.hidden = intent !== 'ma' || !dealConclusion;
+  if (fields.dealThesisConclusion) fields.dealThesisConclusion.textContent = dealConclusion;
 
   // Frameworks row
   const frameworks = data?.lenses?.[lensKey]?.keyFrameworks || [];
@@ -935,18 +977,7 @@ function buildJumpNav(data, intent) {
   const activeIntent = intent || currentIntent;
   const scfg = SECTION_CONFIG[activeIntent];
 
-  const SHORT_LABELS = {
-    'sec-overview':    'Overview',
-    'sec-positioning': 'Positioning',
-    'sec-market':      'Market',
-    'sec-ecosystem':   'Ecosystem',
-    'sec-strengths':   'Strengths',
-    'sec-weaknesses':  'Risks',
-    'sec-diligence':   'Diligence',
-    'sec-news':        'Developments',
-  };
-
-  const sections = scfg.order.map(id => ({ id, label: SHORT_LABELS[id] || id }));
+  const sections = scfg.order.map(id => ({ id, label: scfg.navLabels[id] || id }));
 
   navInner.innerHTML = sections.map((s, i) =>
     (i > 0 ? '<span class="jump-nav-sep" aria-hidden="true">·</span>' : '') +

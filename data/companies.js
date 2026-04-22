@@ -91,6 +91,7 @@ export const mockData = {
       },
       investment: {
         focus: "DigitalOcean is a pure-play SMB cloud infrastructure bet. Upside: underpenetrated global SMB cloud + AI demand from small developers. Downside: structural scale disadvantage vs. hyperscalers limits margin expansion; churn when companies scale up. Path to profitability depends on moving customers up the value curve and expanding ARPU via managed services and AI.",
+        dealConclusion: "Attractive at the right price — the developer community is a genuine distribution asset — but the structural scale gap caps margin expansion, making this a strategic acquisition story rather than a standalone growth multiple.",
         investmentImplications: "Attractive niche infrastructure platform with loyal developer base and AI tailwinds. M&A angle: a hyperscaler or large SaaS company could acquire DO for its SMB customer base and developer community — a distribution asset that would cost more to build than to buy.",
         keyFrameworks: ["B2B Platform Economies of Scale", "ARPU expansion (Growing Deep)", "Strategic acquisition rationale: distribution, customer base, brand"],
         diligenceQuestions: [
@@ -199,6 +200,7 @@ export const mockData = {
       },
       investment: {
         focus: "Uber is a post-profitability, scaled marketplace with growing high-margin revenue layers. The thesis rests on: (1) ridesharing density as a near-durable moat, (2) ad revenue as margin expansion lever, (3) Uber One as a retention mechanism. Key risks: autonomous vehicle disruption, regulatory exposure, and Eats structural profitability.",
+        dealConclusion: "Compelling post-profitability, but autonomous vehicle disruption is the unpriced long-term risk — the near-term thesis holds only if ridesharing density holds and Eats reaches consistent operating leverage.",
         investmentImplications: "Core question: can Uber maintain ridesharing market share while growing Eats profitably and scaling the ad business? M&A likely focused on international market consolidation and logistics adjacencies. Autonomous vehicles are the long-term strategic wildcard — any scenario analysis must model Waymo-style scale on Uber's cost structure.",
         keyFrameworks: ["Unit economics (cost-per-trip, take rate)", "Platform synergy value", "Autonomous vehicle strategic risk", "Advertising as margin expansion"],
         diligenceQuestions: [
@@ -315,6 +317,7 @@ export const mockData = {
       },
       investment: {
         focus: "LinkedIn is a cash-generating, high-margin business within Microsoft's commercial segment. The thesis rests on: (1) Talent Solutions growth in a recovering hiring market, (2) LinkedIn Learning ARPU expansion in enterprise L&D, (3) AI-enhanced recruiter products justifying premium pricing. Key risk: AI-native recruiting tools disrupting Talent Solutions.",
+        dealConclusion: "Near-monopoly professional network with durable margin dynamics — a high-conviction compounder, not a catalyst story; the key variable is whether AI-native recruiting tools erode Talent Solutions pricing power faster than LinkedIn's own AI roadmap can respond.",
         investmentImplications: "LinkedIn is best evaluated as a segment of Microsoft. An independent spinout would command a premium as a near-monopoly professional networking platform. Most important investment question: how AI-native recruiting tools affect the long-term growth rate of Talent Solutions — the highest-margin revenue segment.",
         keyFrameworks: ["Multi-sided platform revenue diversification", "Switching cost analysis by revenue segment", "AI disruption risk to Talent Solutions", "Strategic value within Microsoft commercial cloud"],
         diligenceQuestions: [
@@ -423,6 +426,7 @@ export const mockData = {
       },
       investment: {
         focus: "Stripe is one of the highest-valued private technology companies. The thesis centers on continued capture of growing internet economy payment volume, expansion into financial services adjacencies, and enterprise market penetration. Key risk: margin compression as enterprise scale requires custom pricing, and disintermediation threat from real-time payment rails.",
+        dealConclusion: "Strategically attractive ahead of IPO, but valuation discipline is essential — enterprise margin expansion and real-time rail displacement are the two gating issues that determine whether this is a platform compounder or a premium-priced payment processor.",
         investmentImplications: "A Stripe IPO would test whether developer ecosystem loyalty translates to durable margin. Key metrics: enterprise revenue growth, Connect marketplace GMV, and Capital loan book performance. Strategic acquirer rationale: any bank or large financial services company would pay a premium for Stripe's developer distribution and global payment infrastructure.",
         keyFrameworks: ["Transaction economics at scale", "Financial services ARPU expansion", "IPO/liquidity timing and valuation", "Real-time rail disruption risk"],
         diligenceQuestions: [
@@ -531,6 +535,7 @@ export const mockData = {
       },
       investment: {
         focus: "Shopify is a high-multiple growth story built on the thesis that global e-commerce GMV continues expanding and that Shopify captures an increasing share of merchant financial services (payments, lending, banking). The investment question is ARPU expansion: can Shopify grow revenue per merchant faster than it adds new (lower-GMV) merchants? Fulfillment remains the key open question on profitability.",
+        dealConclusion: "Strong ecosystem flywheel and growing financial services ARPU, but fulfillment losses and social commerce disintermediation are unresolved — a conviction buy only if you believe both GMV growth and financial services capture materialize at scale.",
         investmentImplications: "Shopify trades at a premium reflecting its network effects and merchant ecosystem. Bull case: GMV growth + financial services ARPU expansion + international penetration. Bear case: fulfillment losses persist + TikTok/social commerce disintermediation + Amazon partnership tensions. M&A rationale for a large bank or payments company: Shopify's merchant GMV data and Shop Pay network are unique financial services assets.",
         keyFrameworks: ["Merchant ARPU trajectory", "GMV-based financial services flywheel", "Fulfillment unit economics", "Social commerce disruption risk"],
         diligenceQuestions: [
@@ -646,6 +651,7 @@ export const mockData = {
       },
       investment: {
         focus: "Apple's investment profile is exceptional: high margins, massive buybacks, and growing recurring Services revenue. The bull case centers on Services ARPU expansion, spatial computing (Vision Pro), and healthcare as a new platform. The bear case centers on App Store antitrust structural changes, China geopolitical risk, and AI competitive disadvantage threatening the Services growth rate.",
+        dealConclusion: "One of the highest-quality capital allocators in public markets, but the next leg requires Services growth to hold through App Store regulatory headwinds and a widening AI gap — both are real risks, not tail scenarios.",
         investmentImplications: "Apple is a core holding for most institutional investors due to capital return and brand moat. Incremental thesis question: can Services revenue grow fast enough to offset hardware maturity and App Store commission headwinds? Adjacency plays: Apple's entry into financial services (Apple Card, Pay Later), healthcare (Apple Watch, Health Records), and spatial computing represent the next platform bets.",
         keyFrameworks: ["Services revenue multiple vs. hardware multiple", "App Store regulatory risk haircut", "Capital return program and buyback-driven EPS", "Platform extension into healthcare and financial services"],
         diligenceQuestions: [

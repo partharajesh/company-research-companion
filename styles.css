@@ -875,11 +875,35 @@ body {
 }
 
 /* ─── Intent-based section reordering ───────── */
+/* Full-width hero — M&A only */
 .card-featured {
   grid-column: 1 / -1;
   border-top-width: 4px;
   box-shadow: var(--shadow-lift);
 }
+/* Inline emphasis — Competitive / Partnership (stays in 2-col grid) */
+.card-featured-inline {
+  border-top-width: 4px;
+  box-shadow: var(--shadow-lift);
+}
+
+/* ─── M&A Deal Thesis block (brief header) ───────── */
+.deal-thesis-block {
+  margin-top: 14px; max-width: 640px;
+  border: 1px solid #d4c8f4;
+  border-left: 3px solid var(--purple);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  background: var(--purple-soft);
+}
+.deal-thesis-label {
+  font-size: 9px; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--purple); margin-bottom: 6px;
+}
+.deal-thesis-conclusion {
+  font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.6;
+}
+
 .card-diligence {
   grid-column: 1 / -1;
   border-top: 3px solid var(--amber);
