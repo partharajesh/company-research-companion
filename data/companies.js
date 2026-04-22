@@ -68,17 +68,38 @@ export const mockData = {
     lenses: {
       general: {
         focus: "DigitalOcean's core strategic bet is that simplicity and customer segment focus are durable competitive advantages. The Growing Deep vs. Growing Wide tension is the defining challenge: serve SMBs more deeply (AI, databases, managed services) or broaden upmarket. The first path leverages its brand; the second risks identity dilution.",
-        keyFrameworks: ["Value Curve Analysis", "Winner-Take-Most Dynamics", "B2B Platform: Growing Deep vs. Growing Wide", "Disruptive Innovation"]
+        keyFrameworks: ["Value Curve Analysis", "Winner-Take-Most Dynamics", "B2B Platform: Growing Deep vs. Growing Wide", "Disruptive Innovation"],
+        diligenceQuestions: [
+          "Can DigitalOcean's developer-first brand survive as hyperscalers push AI tooling into the SMB tier with aggressive pricing?",
+          "What is the unit economics of a 'Scaler'-tier customer, and at what GMV threshold does churn to AWS become inevitable?",
+          "How durable is tutorial-driven organic acquisition as developer tooling commoditizes and AI-generated documentation reduces community differentiation?",
+          "Does the Hugging Face partnership create a defensible AI moat, or is it easily replicated by a better-resourced rival?",
+          "What is DigitalOcean's realistic ceiling on ARPU expansion without adding complexity that erodes its simplicity positioning?"
+        ]
       },
       partnership: {
         focus: "DigitalOcean is a natural integration partner for developer tools, SaaS platforms, and AI model providers targeting SMBs. The Hugging Face partnership is a template: DigitalOcean provides infrastructure simplicity; the partner provides specialized capability. Key risk: dependency on a platform that itself depends on larger infrastructure providers.",
         partnershipImplications: "For clients reaching SMB developers, DigitalOcean's Marketplace and community are high-leverage channels. Integration requires low-friction technical alignment (DO's API-first architecture helps). Caution around revenue-share terms — DigitalOcean's negotiating leverage vs. hyperscalers is limited.",
-        keyFrameworks: ["Indirect Network Effects via Marketplace", "Complement vs. Substitute positioning", "Ecosystem dependency mapping"]
+        keyFrameworks: ["Indirect Network Effects via Marketplace", "Complement vs. Substitute positioning", "Ecosystem dependency mapping"],
+        diligenceQuestions: [
+          "Does DigitalOcean's API architecture support the integration depth our client needs, or does it require material custom engineering?",
+          "What is the Marketplace revenue-share structure, and how have partner terms evolved as DigitalOcean's leverage vs. hyperscalers shifts?",
+          "Is the SMB developer customer cohort at DigitalOcean stable enough to justify a multi-year partnership investment?",
+          "What is the risk of DigitalOcean building a native version of our client's product category within the next 18 months?",
+          "How does DigitalOcean's structural customer churn — Scalers graduating to AWS — affect long-term partnership channel economics?"
+        ]
       },
       investment: {
         focus: "DigitalOcean is a pure-play SMB cloud infrastructure bet. Upside: underpenetrated global SMB cloud + AI demand from small developers. Downside: structural scale disadvantage vs. hyperscalers limits margin expansion; churn when companies scale up. Path to profitability depends on moving customers up the value curve and expanding ARPU via managed services and AI.",
         investmentImplications: "Attractive niche infrastructure platform with loyal developer base and AI tailwinds. M&A angle: a hyperscaler or large SaaS company could acquire DO for its SMB customer base and developer community — a distribution asset that would cost more to build than to buy.",
-        keyFrameworks: ["B2B Platform Economies of Scale", "ARPU expansion (Growing Deep)", "Strategic acquisition rationale: distribution, customer base, brand"]
+        keyFrameworks: ["B2B Platform Economies of Scale", "ARPU expansion (Growing Deep)", "Strategic acquisition rationale: distribution, customer base, brand"],
+        diligenceQuestions: [
+          "What is the realistic ceiling of the SMB developer cloud TAM, and what share is structurally capturable without hyperscaler-grade capabilities?",
+          "Can AI product ARPU expansion fully offset Scaler-tier churn, or does the revenue ceiling compress over time?",
+          "Who are the credible strategic acquirers, and what is the acquisition rationale — SMB distribution, developer brand, or technology?",
+          "What metrics over the next 4–6 quarters would confirm or falsify the 'Growing Deep' ARPU expansion thesis?",
+          "At what valuation and margin profile does DigitalOcean become an attractive acquisition target vs. a standalone growth story?"
+        ]
       }
     },
     partnershipImplications: "DigitalOcean is an accessible, low-friction infrastructure partner for clients targeting SMB developers. The Marketplace provides distribution; the community provides reach. Best fit for dev-tools, AI model providers, and SaaS platforms serving early-stage companies. Primary risk: DigitalOcean customers who scale will eventually migrate to hyperscalers, reducing long-term partnership value.",
@@ -155,17 +176,38 @@ export const mockData = {
     lenses: {
       general: {
         focus: "Uber's strategic position is defined by local network density and growing supply-side productivity. Ridesharing is Winner-Take-Most (high necessity for intermediation, high supply-side multi-homing costs); food delivery is Winner-Take-Some (low consumer multi-homing costs). This asymmetry means Uber should invest more aggressively in ridesharing moats while managing Eats for profitability rather than share.",
-        keyFrameworks: ["Winner-Take-Most vs. Winner-Take-Some", "Supply-Side Productivity (cost-per-trip)", "Platform Synergies (ridesharing + Eats)", "Local Network Effects"]
+        keyFrameworks: ["Winner-Take-Most vs. Winner-Take-Some", "Supply-Side Productivity (cost-per-trip)", "Platform Synergies (ridesharing + Eats)", "Local Network Effects"],
+        diligenceQuestions: [
+          "Is Uber's local density flywheel a durable moat, or does autonomous vehicle scale fundamentally break the supply-side economic model?",
+          "At what Waymo/autonomous deployment scale does Uber's driver-dependent model face structural margin compression?",
+          "How does food delivery reach profitability given persistent courier incentive misalignment and DoorDash's market leadership?",
+          "How exposed is Uber to gig worker reclassification, and what is the per-trip cost impact in the most at-risk markets?",
+          "Can advertising (Journey Ads) sustain high-margin growth if Lyft or DoorDash reach competitive local density?"
+        ]
       },
       partnership: {
         focus: "Uber is an infrastructure partner of choice for any business that depends on last-mile logistics or rider access. Delivery API integrations, white-label ride services, and advertising partnerships are the primary modalities. The key question: does Uber's local density in your target markets make it a more effective partner than building proprietary logistics?",
         partnershipImplications: "Best fit for clients in quick-service restaurants, grocery, healthcare transport, corporate travel, and CPG. Integration is straightforward via Uber's API. Risk: Uber holds pricing power and can change take rates unilaterally — dependency on Uber logistics without contractual protection creates margin risk.",
-        keyFrameworks: ["Complement vs. Substitute", "Dependency Risk", "Channel partnership vs. build/buy decision"]
+        keyFrameworks: ["Complement vs. Substitute", "Dependency Risk", "Channel partnership vs. build/buy decision"],
+        diligenceQuestions: [
+          "What take rate and contractual terms apply to the specific Uber integration being evaluated, and how stable have they been historically?",
+          "Does Uber offer contractual protections against unilateral pricing changes that would affect our client's unit economics?",
+          "Is our client's use case — delivery, corporate travel, or healthcare transport — a strategic priority for Uber over the next 3 years?",
+          "Does Uber's supply-side density in target geographies make it a superior logistics partner compared to building a proprietary solution?",
+          "How does driver supply volatility in target markets affect the service-level commitments Uber can realistically offer to partners?"
+        ]
       },
       investment: {
         focus: "Uber is a post-profitability, scaled marketplace with growing high-margin revenue layers. The thesis rests on: (1) ridesharing density as a near-durable moat, (2) ad revenue as margin expansion lever, (3) Uber One as a retention mechanism. Key risks: autonomous vehicle disruption, regulatory exposure, and Eats structural profitability.",
         investmentImplications: "Core question: can Uber maintain ridesharing market share while growing Eats profitably and scaling the ad business? M&A likely focused on international market consolidation and logistics adjacencies. Autonomous vehicles are the long-term strategic wildcard — any scenario analysis must model Waymo-style scale on Uber's cost structure.",
-        keyFrameworks: ["Unit economics (cost-per-trip, take rate)", "Platform synergy value", "Autonomous vehicle strategic risk", "Advertising as margin expansion"]
+        keyFrameworks: ["Unit economics (cost-per-trip, take rate)", "Platform synergy value", "Autonomous vehicle strategic risk", "Advertising as margin expansion"],
+        diligenceQuestions: [
+          "What is the sustainable take rate trajectory in ridesharing as Waymo-on-Uber scales and autonomous supply enters the marketplace?",
+          "Can Uber One subscription penetration continue growing, and what is the ARPU differential between subscribers and non-subscribers?",
+          "What are the regulatory scenarios — AB5 expansion, EU Digital Markets Act — that most materially affect Uber's unit economics?",
+          "How much of Uber's advertising revenue is defensible if a competitor reaches comparable local density in top markets?",
+          "What is the autonomous vehicle strategic scenario tree: does Uber own the distribution layer, or does Waymo/Tesla bypass it entirely?"
+        ]
       }
     },
     partnershipImplications: "Uber is a high-leverage logistics and distribution partner for clients in food, grocery, healthcare transport, and corporate mobility. The Uber for Business product and Eats API enable white-label integrations. Primary partnership risks: take rate volatility, lack of exclusivity, and regulatory exposure in key markets.",
@@ -250,17 +292,38 @@ export const mockData = {
     lenses: {
       general: {
         focus: "LinkedIn's strategic position is best understood through multi-sided platform monetization: subsidize the side that supplies value (members, free access) and charge the side that demands it (recruiters, at premium). The platform expansion question — whether LinkedIn Learning strengthens or weakens the core recruiter-member network effect — is the defining strategic challenge.",
-        keyFrameworks: ["Multi-sided Platform Monetization (charge the 'needier side')", "Network Cover as value proposition", "Platform Scope Expansion Framework", "Envelopment threat analysis"]
+        keyFrameworks: ["Multi-sided Platform Monetization (charge the 'needier side')", "Network Cover as value proposition", "Platform Scope Expansion Framework", "Envelopment threat analysis"],
+        diligenceQuestions: [
+          "How durable is Network Cover if AI-native recruiting tools enable quality matching without requiring passive candidate access?",
+          "What is the realistic timeline and revenue impact of OpenAI's announced jobs platform, and which Talent Solutions segment is most exposed?",
+          "How does LinkedIn balance content volume growth — which drives engagement — with professional signal quality — which drives recruiter willingness to pay?",
+          "Is LinkedIn Learning a flywheel-strengthening adjacency, or does it dilute the recruiter-member moat by shifting platform identity toward content?",
+          "What is the revenue impact if EU DMA-style forced API access requirements apply to LinkedIn's recruiter data across other jurisdictions?"
+        ]
       },
       partnership: {
         focus: "LinkedIn is the most valuable B2B distribution platform available for reaching professional decision-makers. For clients in HR tech, sales enablement, professional development, or B2B SaaS, LinkedIn offers both an advertising channel and a potential API/integration partnership. The Microsoft integration creates co-selling opportunities via Dynamics 365, Teams, and Microsoft 365.",
         partnershipImplications: "LinkedIn is a strong partner for clients in HR tech (ATS/HRIS integrations), B2B SaaS (LinkedIn Ads for pipeline generation), and professional development (Learning content partnerships). Primary risk: asymmetric leverage — LinkedIn controls the professional identity graph and can change API access terms.",
-        keyFrameworks: ["Ecosystem dependency and API risk", "Microsoft commercial cloud co-selling", "Indirect network effects (content creators + members + recruiters)"]
+        keyFrameworks: ["Ecosystem dependency and API risk", "Microsoft commercial cloud co-selling", "Indirect network effects (content creators + members + recruiters)"],
+        diligenceQuestions: [
+          "What LinkedIn API access is available for our client's use case, and how have access terms and rate limits changed over the past 24 months?",
+          "Is Microsoft's co-selling motion via Dynamics 365 and Teams a realistic channel for our client, or primarily accessible to Microsoft-aligned enterprise partners?",
+          "What is the risk that LinkedIn builds a native version of our client's product category, given its history with Learning and Recruiter tools?",
+          "How does LinkedIn's own data policy affect targeting precision and measurement for advertising-dependent partnership models?",
+          "What are the certification requirements and lead times for an ATS/HRIS integration partnership with LinkedIn Talent Solutions?"
+        ]
       },
       investment: {
         focus: "LinkedIn is a cash-generating, high-margin business within Microsoft's commercial segment. The thesis rests on: (1) Talent Solutions growth in a recovering hiring market, (2) LinkedIn Learning ARPU expansion in enterprise L&D, (3) AI-enhanced recruiter products justifying premium pricing. Key risk: AI-native recruiting tools disrupting Talent Solutions.",
         investmentImplications: "LinkedIn is best evaluated as a segment of Microsoft. An independent spinout would command a premium as a near-monopoly professional networking platform. Most important investment question: how AI-native recruiting tools affect the long-term growth rate of Talent Solutions — the highest-margin revenue segment.",
-        keyFrameworks: ["Multi-sided platform revenue diversification", "Switching cost analysis by revenue segment", "AI disruption risk to Talent Solutions", "Strategic value within Microsoft commercial cloud"]
+        keyFrameworks: ["Multi-sided platform revenue diversification", "Switching cost analysis by revenue segment", "AI disruption risk to Talent Solutions", "Strategic value within Microsoft commercial cloud"],
+        diligenceQuestions: [
+          "What is the Talent Solutions revenue trajectory in a sustained hiring downturn, and what operating leverage does LinkedIn have to protect segment margin?",
+          "How does potential loss of the Google Search default deal affect LinkedIn's Services revenue, and is there a credible Microsoft-internal offset?",
+          "Can LinkedIn Learning sustain growth against Coursera, Udemy, and enterprise L&D platforms with lower switching costs and modular pricing?",
+          "What is the incremental margin profile of AI-enhanced recruiter products, and do they justify a premium pricing layer vs. existing Talent Solutions SKUs?",
+          "How would an independently valued LinkedIn trade relative to its contribution to Microsoft's commercial cloud segment?"
+        ]
       }
     },
     partnershipImplications: "LinkedIn is one of the most powerful B2B distribution and data assets available. For clients in professional services, HR tech, or B2B SaaS, LinkedIn advertising and API partnerships offer unmatched professional audience targeting. Risk: dependency on LinkedIn's API terms and the platform's incentive to compete with adjacent products.",
@@ -337,17 +400,38 @@ export const mockData = {
     lenses: {
       general: {
         focus: "Stripe's strategic position is defined by developer ecosystem lock-in and API-first platform expansion. The core question is whether Stripe can maintain developer preference as it moves upmarket to enterprise (where Adyen is entrenched) and as banks/networks build their own developer-friendly rails. The 'Growing Deep' path (Capital, Treasury, Atlas) deepens financial services for existing customers vs. 'Growing Wide' through geographic expansion.",
-        keyFrameworks: ["Developer Ecosystem Lock-in", "Platform Scope Expansion (financial services layer)", "Winner-Take-Most Dynamics", "Disruption from below (Stripe disrupted incumbent processors)"]
+        keyFrameworks: ["Developer Ecosystem Lock-in", "Platform Scope Expansion (financial services layer)", "Winner-Take-Most Dynamics", "Disruption from below (Stripe disrupted incumbent processors)"],
+        diligenceQuestions: [
+          "How durable is developer loyalty as a moat if large banks and card networks build credible, developer-friendly API layers?",
+          "What is Stripe's realistic path to enterprise margin — can it maintain take rates while negotiating volume pricing with Shopify- and Amazon-scale customers?",
+          "How does the maturation of real-time payment rails (FedNow, open banking) affect Stripe's long-term take rate on card-based transactions?",
+          "Is Stripe's financial services expansion (Capital, Treasury, Atlas) a defensible moat extension or an overextension into heavily regulated territory?",
+          "What is the strategic threat from Adyen in the enterprise segment Stripe is targeting — and what is Stripe's differentiated enterprise value proposition?"
+        ]
       },
       partnership: {
         focus: "Stripe is the default payment integration for any SaaS, marketplace, or platform business. Stripe Connect makes it the natural infrastructure for businesses with complex payout flows. Key consideration: Stripe is increasingly a competitor in financial services verticals it also enables — evaluate dependency risk if your client operates adjacent to Stripe Capital, Treasury, or Atlas.",
         partnershipImplications: "Stripe Connect is the right integration for marketplace and platform businesses. Stripe's developer ecosystem and Radar fraud detection create genuine value beyond raw payment processing. Primary risk: Stripe may enter adjacent verticals your client operates in (lending via Capital, banking via Treasury).",
-        keyFrameworks: ["Complement vs. Substitute Risk", "API Dependency Mapping", "Ecosystem lock-in via Connect"]
+        keyFrameworks: ["Complement vs. Substitute Risk", "API Dependency Mapping", "Ecosystem lock-in via Connect"],
+        diligenceQuestions: [
+          "Which Stripe products — Connect, Billing, Radar — are core to our client's use case, and what is the switching cost profile for each?",
+          "Is Stripe building capabilities adjacent to our client's category (Capital, Treasury, Atlas) that could convert the partnership into a competitive conflict?",
+          "What is the process for negotiating custom pricing at our client's transaction volume, and how transparent is Stripe's enterprise rate card?",
+          "How has Stripe's API versioning and backward compatibility track record affected partners during major platform migrations?",
+          "Who holds regulatory and compliance liability for payment processing failures under our client's specific Stripe integration structure?"
+        ]
       },
       investment: {
         focus: "Stripe is one of the highest-valued private technology companies. The thesis centers on continued capture of growing internet economy payment volume, expansion into financial services adjacencies, and enterprise market penetration. Key risk: margin compression as enterprise scale requires custom pricing, and disintermediation threat from real-time payment rails.",
         investmentImplications: "A Stripe IPO would test whether developer ecosystem loyalty translates to durable margin. Key metrics: enterprise revenue growth, Connect marketplace GMV, and Capital loan book performance. Strategic acquirer rationale: any bank or large financial services company would pay a premium for Stripe's developer distribution and global payment infrastructure.",
-        keyFrameworks: ["Transaction economics at scale", "Financial services ARPU expansion", "IPO/liquidity timing and valuation", "Real-time rail disruption risk"]
+        keyFrameworks: ["Transaction economics at scale", "Financial services ARPU expansion", "IPO/liquidity timing and valuation", "Real-time rail disruption risk"],
+        diligenceQuestions: [
+          "What does IPO pricing imply about Stripe's expected take rate trajectory, and is that assumption defensible against real-time rail competition?",
+          "What is the revenue concentration risk from top customers (Shopify, Amazon), and what is the churn impact if one re-platforms to a proprietary processor?",
+          "How does the Bridge acquisition change Stripe's revenue model and margin profile — and is stablecoin infrastructure a near-term or long-term revenue contributor?",
+          "What is the strategic acquirer case — which banks, card networks, or enterprise software companies would pay a control premium, and at what multiple?",
+          "At what IPO valuation multiple does Stripe become fairly valued vs. overvalued, benchmarked against Adyen's public market trading history?"
+        ]
       }
     },
     partnershipImplications: "Stripe is the most natural payments infrastructure partner for any internet business. For clients building SaaS, marketplace, or fintech products, Stripe offers unmatched developer experience and global reach. Primary risk: Stripe's tendency to expand into adjacent financial services categories — clients should monitor whether Stripe becomes a competitor in their core market.",
@@ -424,17 +508,38 @@ export const mockData = {
     lenses: {
       general: {
         focus: "Shopify is a textbook platform business with strong indirect network effects between merchants and app developers. The strategic tension is between deepening services for existing merchants (Payments, Capital, Fulfillment — Growing Deep) and expanding the merchant base globally (Growing Wide). The fulfillment network investment tests whether Shopify can compete with Amazon on logistics — a high-stakes bet on vertical integration.",
-        keyFrameworks: ["Indirect Network Effects (App Store)", "Platform Scope Expansion", "Growing Deep vs. Growing Wide", "Envelopment threat from TikTok/social commerce"]
+        keyFrameworks: ["Indirect Network Effects (App Store)", "Platform Scope Expansion", "Growing Deep vs. Growing Wide", "Envelopment threat from TikTok/social commerce"],
+        diligenceQuestions: [
+          "Is TikTok Shop a complementary distribution channel or a platform envelopment threat — and at what merchant adoption rate does it become substitution risk?",
+          "Can Shopify defend its SMB position against WooCommerce's zero-cost model and the growing accessibility of headless commerce platforms?",
+          "What is the unit economics impact of exiting warehouse fulfillment, and does the partner-led model create a structural logistics gap vs. Amazon?",
+          "How dependent is Shopify merchant success on Meta and Google ad performance, and what is Shopify's revenue exposure to a sustained advertising ROI decline?",
+          "At what enterprise penetration rate does Shopify's 'indie merchant OS' brand create tension with the Shopify Plus upmarket push?"
+        ]
       },
       partnership: {
         focus: "Shopify is the essential integration for any e-commerce enablement company — payments, logistics, marketing, customer service, and analytics tools all need Shopify connectivity. The App Store is the primary partnership channel. For consulting clients building commerce-adjacent SaaS, Shopify integration is typically a requirement, not a choice. Key risk: Shopify may build native versions of successful third-party apps.",
         partnershipImplications: "Shopify is a high-value integration partner for any commerce-adjacent SaaS company. App Store listing gives access to 2M+ merchants. Key risk: Shopify has a history of 'acqui-hiring' or natively building capabilities that previously required third-party apps — partners must maintain differentiation.",
-        keyFrameworks: ["App Store Indirect Network Effects", "Complement vs. Substitute Risk (Shopify builds in-house)", "Distribution via App Store vs. direct sales"]
+        keyFrameworks: ["App Store Indirect Network Effects", "Complement vs. Substitute Risk (Shopify builds in-house)", "Distribution via App Store vs. direct sales"],
+        diligenceQuestions: [
+          "What is the App Store listing process, revenue-share structure, and typical merchant conversion rate for a new app in our client's category?",
+          "Has Shopify historically built native versions of products in our client's category, and what is the current roadmap signal for the next 18 months?",
+          "Does our client's target merchant segment — SMB vs. Shopify Plus — map to Shopify's highest-priority customer cohort for platform investment?",
+          "How does SMB merchant churn affect the long-term value of the App Store as a distribution channel, and what is the retention rate by merchant GMV tier?",
+          "What are the technical certification requirements for the Shopify Partner Program, and what support does Shopify provide to App Store partners at scale?"
+        ]
       },
       investment: {
         focus: "Shopify is a high-multiple growth story built on the thesis that global e-commerce GMV continues expanding and that Shopify captures an increasing share of merchant financial services (payments, lending, banking). The investment question is ARPU expansion: can Shopify grow revenue per merchant faster than it adds new (lower-GMV) merchants? Fulfillment remains the key open question on profitability.",
         investmentImplications: "Shopify trades at a premium reflecting its network effects and merchant ecosystem. Bull case: GMV growth + financial services ARPU expansion + international penetration. Bear case: fulfillment losses persist + TikTok/social commerce disintermediation + Amazon partnership tensions. M&A rationale for a large bank or payments company: Shopify's merchant GMV data and Shop Pay network are unique financial services assets.",
-        keyFrameworks: ["Merchant ARPU trajectory", "GMV-based financial services flywheel", "Fulfillment unit economics", "Social commerce disruption risk"]
+        keyFrameworks: ["Merchant ARPU trajectory", "GMV-based financial services flywheel", "Fulfillment unit economics", "Social commerce disruption risk"],
+        diligenceQuestions: [
+          "What is the sustainable ARPU trajectory as lower-GMV merchant cohorts grow — does merchant mix shift compress or expand Merchant Solutions take rate?",
+          "How much of Shopify Capital's loan book performance depends on first-party GMV data, and what is the credit risk profile in a consumer spending downturn?",
+          "Is the partner-led fulfillment model a capital-light strategic pivot that improves margin, or a permanent logistics capability gap vs. Amazon?",
+          "At what point does TikTok Shop integration evolve from distribution channel to platform dependency — and what is Shopify's leverage to prevent lock-in?",
+          "What is the M&A case — which major bank, retailer, or logistics company has the strategic rationale and balance sheet to acquire Shopify's merchant GMV network?"
+        ]
       }
     },
     partnershipImplications: "Shopify is the most important integration in e-commerce SaaS. For clients building any commerce-adjacent product — payments, marketing, customer service, analytics, fulfillment — Shopify integration is typically mandatory. Primary risks: Shopify's tendency to build or acquire successful app categories natively, and the merchant base's sensitivity to Shopify pricing changes.",
@@ -518,17 +623,38 @@ export const mockData = {
     lenses: {
       general: {
         focus: "Apple's strategy is defined by ecosystem lock-in and premium positioning — a textbook example of managing indirect network effects between consumers and developers through tight platform control. The central strategic question for 2026 is whether Apple's closed platform strategy remains sustainable under regulatory pressure (EU DMA, DOJ antitrust) and AI competitive pressure (Google, OpenAI), or whether it must open up in ways that structurally erode its commission-based Services revenue.",
-        keyFrameworks: ["Closed Platform Strategy & Ecosystem Lock-in", "Indirect Network Effects (consumers ↔ developers)", "Services transformation (hardware to recurring revenue)", "Winner-Take-All dynamics in premium segment"]
+        keyFrameworks: ["Closed Platform Strategy & Ecosystem Lock-in", "Indirect Network Effects (consumers ↔ developers)", "Services transformation (hardware to recurring revenue)", "Winner-Take-All dynamics in premium segment"],
+        diligenceQuestions: [
+          "What is the revenue impact if EU DMA third-party app store requirements expand to other jurisdictions, and at what commission haircut does Services growth materially decelerate?",
+          "How far behind is Apple Intelligence vs. Google Gemini and OpenAI, and at what capability gap do premium consumers begin switching to Android in meaningful numbers?",
+          "What is the regulatory scenario analysis for the Google Search default deal, and what alternative revenue source could credibly replace $20B+ in annual income?",
+          "Is Apple's closed platform strategy sustainable in a world where AI assistants increasingly substitute for App Store discovery and distribution?",
+          "What is China's realistic strategic importance over a 5-year horizon, and does Apple have a credible manufacturing and demand diversification plan?"
+        ]
       },
       partnership: {
         focus: "Apple is simultaneously one of the best and most difficult partners in technology. The App Store provides unmatched distribution to 1B+ premium consumers, but the 15–30% commission and Apple's ability to clone successful apps ('Sherlocking') create existential risk for partners. The Google Search deal is a case study in how even the most capable technology companies sometimes need to partner with their primary rivals.",
         partnershipImplications: "For clients building consumer-facing digital products, iOS distribution via the App Store is non-negotiable. Partnership considerations: commission rate negotiation (possible only at significant scale), Apple's increasing interest in financial services (Apple Pay Later, Apple Card) creates potential conflict for fintech clients, and Apple's privacy-first positioning (App Tracking Transparency) has reshaped mobile advertising economics.",
-        keyFrameworks: ["App Store as distribution moat vs. dependency risk", "'Sherlocking' risk (Apple replicates successful features)", "Privacy policy impact on partner advertising economics"]
+        keyFrameworks: ["App Store as distribution moat vs. dependency risk", "'Sherlocking' risk (Apple replicates successful features)", "Privacy policy impact on partner advertising economics"],
+        diligenceQuestions: [
+          "For our client's specific category, what is the 'Sherlocking' risk history — has Apple previously built native features that displaced similar App Store offerings?",
+          "What is the practical process for negotiating reduced App Store commission rates at scale, and what revenue threshold typically unlocks enterprise terms?",
+          "How has App Tracking Transparency affected our client's iOS user acquisition economics relative to Android, and what is the trend over the past 8 quarters?",
+          "Is our client's product category exposed to Apple's growing financial services footprint — Apple Pay, Apple Card, Apple Pay Later — as a potential direct competitor?",
+          "What are the Apple Developer Program certification requirements and review timelines for our client's category, and how has review policy changed recently?"
+        ]
       },
       investment: {
         focus: "Apple's investment profile is exceptional: high margins, massive buybacks, and growing recurring Services revenue. The bull case centers on Services ARPU expansion, spatial computing (Vision Pro), and healthcare as a new platform. The bear case centers on App Store antitrust structural changes, China geopolitical risk, and AI competitive disadvantage threatening the Services growth rate.",
         investmentImplications: "Apple is a core holding for most institutional investors due to capital return and brand moat. Incremental thesis question: can Services revenue grow fast enough to offset hardware maturity and App Store commission headwinds? Adjacency plays: Apple's entry into financial services (Apple Card, Pay Later), healthcare (Apple Watch, Health Records), and spatial computing represent the next platform bets.",
-        keyFrameworks: ["Services revenue multiple vs. hardware multiple", "App Store regulatory risk haircut", "Capital return program and buyback-driven EPS", "Platform extension into healthcare and financial services"]
+        keyFrameworks: ["Services revenue multiple vs. hardware multiple", "App Store regulatory risk haircut", "Capital return program and buyback-driven EPS", "Platform extension into healthcare and financial services"],
+        diligenceQuestions: [
+          "What is the fair value of Apple without the Google Search default deal, and how does each DOJ outcome scenario affect EPS and the Services revenue multiple?",
+          "At what App Store commission rate haircut does Services segment growth compress below the market's implied 20x+ multiple on Services revenue?",
+          "What is the optionality value in Vision Pro and spatial computing, and at what device volume does it become a material contributor to the Services mix?",
+          "How does Apple's AI capability gap manifest in financial outcomes first — premium ASP compression, Services churn, or developer ecosystem attrition?",
+          "What is the capital return sensitivity — at what buyback pace does EPS growth decouple from revenue growth, and how does this affect long-range consensus estimates?"
+        ]
       }
     },
     partnershipImplications: "Apple is an essential distribution partner for any consumer-facing digital product — 1B+ premium users with high willingness to pay make iOS a mandatory target. Strategic risk: App Store commission (15–30%), Apple's ability to replicate partner features ('Sherlocking'), and App Tracking Transparency's impact on partners dependent on mobile advertising. Financial services, healthcare, and enterprise IT clients should additionally assess Apple's own product roadmap for direct competitive entry.",

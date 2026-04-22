@@ -874,6 +874,30 @@ body {
   line-height: 1.6; font-style: italic;
 }
 
+/* ─── Intent-based section reordering ───────── */
+.card-featured {
+  grid-column: 1 / -1;
+  border-top-width: 4px;
+  box-shadow: var(--shadow-lift);
+}
+.card-diligence {
+  grid-column: 1 / -1;
+  border-top: 3px solid var(--amber);
+}
+.lens-focus-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--accent); background: var(--accent-soft);
+  border: 1px solid #c5cefc;
+  padding: 2px 8px; border-radius: var(--radius-sm);
+  white-space: nowrap; flex-shrink: 0;
+}
+.brief-lens-summary {
+  font-size: 13px; color: var(--ink-muted); line-height: 1.65;
+  margin-top: 10px; max-width: 640px;
+  padding-left: 12px; border-left: 2px solid var(--border);
+}
+
 /* ─── Print / PDF Export ─────────────── */
 @media print {
   /* Force color rendering for charts and badges */

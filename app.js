@@ -25,6 +25,54 @@ const INTENT_CONFIG = {
   },
 };
 
+const SECTION_CONFIG = {
+  competitive: {
+    featured: 'sec-positioning',
+    order: ['sec-overview', 'sec-positioning', 'sec-market', 'sec-strengths', 'sec-weaknesses', 'sec-ecosystem', 'sec-diligence', 'sec-news'],
+    titles: {
+      'sec-overview':    'Company Overview',
+      'sec-positioning': 'Competitive Positioning',
+      'sec-market':      'Market Landscape',
+      'sec-ecosystem':   'Ecosystem & Platform Role',
+      'sec-strengths':   'Strengths & Sources of Advantage',
+      'sec-weaknesses':  'Vulnerabilities & Attack Vectors',
+      'sec-diligence':   'Key Diligence Questions',
+      'sec-news':        'Recent Developments',
+    },
+    focusLabel: 'Competitive Analysis',
+  },
+  partnership: {
+    featured: 'sec-ecosystem',
+    order: ['sec-overview', 'sec-ecosystem', 'sec-strengths', 'sec-positioning', 'sec-market', 'sec-weaknesses', 'sec-diligence', 'sec-news'],
+    titles: {
+      'sec-overview':    'Company Overview',
+      'sec-positioning': 'Competitive Landscape',
+      'sec-market':      'Market & Demand Context',
+      'sec-ecosystem':   'Ecosystem & Partnership Fit',
+      'sec-strengths':   'Strengths & Partnership Fit',
+      'sec-weaknesses':  'Dependencies & Integration Risks',
+      'sec-diligence':   'Partnership Diligence',
+      'sec-news':        'Recent Developments',
+    },
+    focusLabel: 'Partnership Analysis',
+  },
+  ma: {
+    featured: 'sec-strengths',
+    order: ['sec-overview', 'sec-strengths', 'sec-weaknesses', 'sec-positioning', 'sec-market', 'sec-ecosystem', 'sec-diligence', 'sec-news'],
+    titles: {
+      'sec-overview':    'Company Overview',
+      'sec-positioning': 'Competitive Moat',
+      'sec-market':      'Market Opportunity',
+      'sec-ecosystem':   'Platform & Ecosystem Defensibility',
+      'sec-strengths':   'Value Drivers & Investment Case',
+      'sec-weaknesses':  'Risks & Concentration Factors',
+      'sec-diligence':   'M&A Diligence Priorities',
+      'sec-news':        'Recent Developments',
+    },
+    focusLabel: 'M&A Analysis',
+  },
+};
+
 // ─── DOM refs ─────────────────────────────────────────────────
 const companyInput  = document.getElementById('companyInput');
 const generateBtn   = document.getElementById('generateBtn');
@@ -48,28 +96,26 @@ const briefTakeaway    = document.getElementById('briefTakeaway');
 
 
 const fields = {
-  sectorBadge:         document.getElementById('briefSectorBadge'),
-  companyLogo:         document.getElementById('briefCompanyLogo'),
-  companyName:         document.getElementById('briefCompanyName'),
-  companyMeta:         document.getElementById('briefCompanyMeta'),
-  updated:             document.getElementById('briefUpdated'),
-  overview:            document.getElementById('cardOverview'),
-  businessModel:       document.getElementById('cardBusinessModel'),
-  targetCustomers:     document.getElementById('cardTargetCustomers'),
-  positioning:         document.getElementById('cardPositioning'),
-  market:              document.getElementById('cardMarket'),
-  ecosystem:           document.getElementById('cardEcosystem'),
-  strengths:           document.getElementById('cardStrengths'),
-  weaknesses:          document.getElementById('cardWeaknesses'),
-  partnership:         document.getElementById('cardPartnership'),
-  investment:          document.getElementById('cardInvestment'),
-  news:                document.getElementById('cardNews'),
-  vizMap:              document.getElementById('vizCompetitiveMap'),
-  vizWta:              document.getElementById('vizWtaSpectrum'),
-  vizEco:              document.getElementById('vizEcosystem'),
-  vizRev:              document.getElementById('vizRevenue'),
-  cardPartnershipWrap: document.getElementById('cardPartnershipWrap'),
-  cardInvestmentWrap:  document.getElementById('cardInvestmentWrap'),
+  sectorBadge:     document.getElementById('briefSectorBadge'),
+  companyLogo:     document.getElementById('briefCompanyLogo'),
+  companyName:     document.getElementById('briefCompanyName'),
+  companyMeta:     document.getElementById('briefCompanyMeta'),
+  updated:         document.getElementById('briefUpdated'),
+  overview:        document.getElementById('cardOverview'),
+  businessModel:   document.getElementById('cardBusinessModel'),
+  targetCustomers: document.getElementById('cardTargetCustomers'),
+  positioning:     document.getElementById('cardPositioning'),
+  market:          document.getElementById('cardMarket'),
+  ecosystem:       document.getElementById('cardEcosystem'),
+  strengths:       document.getElementById('cardStrengths'),
+  weaknesses:      document.getElementById('cardWeaknesses'),
+  diligence:       document.getElementById('cardDiligence'),
+  lensSummary:     document.getElementById('briefLensSummary'),
+  news:            document.getElementById('cardNews'),
+  vizMap:          document.getElementById('vizCompetitiveMap'),
+  vizWta:          document.getElementById('vizWtaSpectrum'),
+  vizEco:          document.getElementById('vizEcosystem'),
+  vizRev:          document.getElementById('vizRevenue'),
 };
 
 
@@ -139,60 +185,80 @@ function populateBrief(data) {
   renderEcosystem(fields.vizEco,      v.ecosystemNodes, data.company, v.accentColor);
   renderRevenue(fields.vizRev,        v.revenueBreakdown);
 
-  applyIntent(currentIntent, data); // also calls updateCardNumbers
+  applyIntent(currentIntent, data);
   buildJumpNav(data, currentIntent);
 }
 
 // ─── Apply Intent ─────────────────────────────────────────────
+const ALL_SECTION_IDS = ['sec-overview', 'sec-positioning', 'sec-market', 'sec-ecosystem', 'sec-strengths', 'sec-weaknesses', 'sec-diligence', 'sec-news'];
+
 function applyIntent(intent, data) {
   currentIntent = intent;
+  const scfg    = SECTION_CONFIG[intent];
   const cfg     = INTENT_CONFIG[intent];
   const lensKey = cfg.lensKey;
 
-  // Intent descriptor (always update, even before a brief loads)
+  // Intent descriptor
   if (intentDescriptor) intentDescriptor.textContent = cfg.descriptor;
 
   // Show/hide partner input row
   if (partnerRow) partnerRow.hidden = intent !== 'partnership';
 
-  // Intent-sensitive card titles (05 & 06)
-  const strengthsTitleEl = document.querySelector('#briefOutput .card-strengths .card-title');
-  const weaknessesTitleEl = document.querySelector('#briefOutput .card-weaknesses .card-title');
-  if (strengthsTitleEl) strengthsTitleEl.textContent = cfg.cardTitles.strengths;
-  if (weaknessesTitleEl) weaknessesTitleEl.textContent = cfg.cardTitles.weaknesses;
+  // Apply CSS order + clear/set featured class
+  ALL_SECTION_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('card-featured');
+    const idx = scfg.order.indexOf(id);
+    el.style.order = idx >= 0 ? idx : 99;
+  });
 
-  // Frameworks row — always visible; fallback message if no chips
+  const featuredEl = document.getElementById(scfg.featured);
+  if (featuredEl) featuredEl.classList.add('card-featured');
+
+  // Update card titles
+  Object.entries(scfg.titles).forEach(([id, title]) => {
+    const cardEl = document.getElementById(id);
+    if (!cardEl) return;
+    const titleEl = cardEl.querySelector('.card-title');
+    if (titleEl) titleEl.textContent = title;
+  });
+
+  // Lens focus badge — clear all stale badges first, then add to current featured card
+  document.querySelectorAll('.lens-focus-badge').forEach(b => b.remove());
+  if (featuredEl) {
+    const hdr = featuredEl.querySelector('.card-header');
+    if (hdr) {
+      const badge = document.createElement('span');
+      badge.className = 'lens-focus-badge';
+      badge.textContent = scfg.focusLabel;
+      hdr.appendChild(badge);
+    }
+  }
+
+  // Lens summary in brief header
+  if (fields.lensSummary) {
+    const focusText = data?.lenses?.[lensKey]?.focus || '';
+    fields.lensSummary.textContent = focusText;
+    fields.lensSummary.hidden = !focusText;
+  }
+
+  // Frameworks row
   const frameworks = data?.lenses?.[lensKey]?.keyFrameworks || [];
   if (frameworksChips) {
-    if (frameworks.length > 0) {
-      frameworksChips.innerHTML = frameworks.map(f => `<span class="framework-chip">${escHtml(f)}</span>`).join('');
-    } else {
-      frameworksChips.innerHTML = '<span class="frameworks-fallback">Analysis applied contextually — no frameworks explicitly tagged for this lens.</span>';
-    }
+    frameworksChips.innerHTML = frameworks.length > 0
+      ? frameworks.map(f => `<span class="framework-chip">${escHtml(f)}</span>`).join('')
+      : '<span class="frameworks-fallback">Analysis applied contextually — no frameworks explicitly tagged for this lens.</span>';
   }
   if (frameworksRow) frameworksRow.hidden = false;
 
-  // Partnership and investment card content
-  const partnerText = data.lenses?.[lensKey]?.partnershipImplications || data.partnershipImplications || '';
-  fields.partnership.textContent = partnerText;
-
-  const investText = data.lenses?.[lensKey]?.investmentImplications || data.investmentImplications || '';
-  fields.investment.textContent = investText;
-
-  // Update partnership card title to include partner name if set
-  const partnerName = partnerInput?.value.trim() || '';
-  const partnerCardTitle = fields.cardPartnershipWrap?.querySelector('.card-title');
-  if (partnerCardTitle) {
-    partnerCardTitle.textContent = (intent === 'partnership' && partnerName)
-      ? `Partnership: ${data.company} × ${partnerName}`
-      : 'Partnership Implications';
+  // Diligence questions
+  if (fields.diligence) {
+    const questions = data?.lenses?.[lensKey]?.diligenceQuestions || [];
+    renderOrderedList(fields.diligence, questions);
   }
 
-  // Show/hide intent-gated cards
-  fields.cardPartnershipWrap.hidden = intent !== 'partnership';
-  fields.cardInvestmentWrap.hidden  = intent !== 'ma';
-
-  // Update active intent tab
+  // Active intent tab
   intentTabs.forEach(tab => {
     const active = tab.dataset.intent === intent;
     tab.classList.toggle('active', active);
@@ -204,10 +270,13 @@ function applyIntent(intent, data) {
 
 // ─── Dynamic card numbering ───────────────────────────────────
 function updateCardNumbers() {
-  let n = 1;
-  document.querySelectorAll('#briefOutput .card:not([hidden]) .card-num').forEach(el => {
-    el.textContent = String(n).padStart(2, '0');
-    n++;
+  // Sort by CSS order value so numbers match visual position
+  const scfg = SECTION_CONFIG[currentIntent];
+  scfg.order.forEach((id, idx) => {
+    const card = document.getElementById(id);
+    if (!card || card.hidden) return;
+    const numEl = card.querySelector('.card-num');
+    if (numEl) numEl.textContent = String(idx + 1).padStart(2, '0');
   });
 }
 
@@ -864,18 +933,20 @@ function buildJumpNav(data, intent) {
   const navInner = document.getElementById('briefJumpNavInner');
   if (!navInner) return;
   const activeIntent = intent || currentIntent;
+  const scfg = SECTION_CONFIG[activeIntent];
 
-  const sections = [
-    { id: 'sec-overview',    label: 'Overview' },
-    { id: 'sec-positioning', label: 'Positioning' },
-    { id: 'sec-market',      label: 'Market' },
-    { id: 'sec-ecosystem',   label: 'Ecosystem' },
-    { id: 'sec-strengths',   label: 'Strengths' },
-    { id: 'sec-weaknesses',  label: activeIntent === 'competitive' ? 'Vulnerabilities' : 'Risks' },
-  ];
-  if (activeIntent === 'partnership') sections.push({ id: 'cardPartnershipWrap', label: 'Partnership' });
-  if (activeIntent === 'ma')          sections.push({ id: 'cardInvestmentWrap',  label: 'M&A' });
-  sections.push({ id: 'sec-news', label: 'Developments' });
+  const SHORT_LABELS = {
+    'sec-overview':    'Overview',
+    'sec-positioning': 'Positioning',
+    'sec-market':      'Market',
+    'sec-ecosystem':   'Ecosystem',
+    'sec-strengths':   'Strengths',
+    'sec-weaknesses':  'Risks',
+    'sec-diligence':   'Diligence',
+    'sec-news':        'Developments',
+  };
+
+  const sections = scfg.order.map(id => ({ id, label: SHORT_LABELS[id] || id }));
 
   navInner.innerHTML = sections.map((s, i) =>
     (i > 0 ? '<span class="jump-nav-sep" aria-hidden="true">·</span>' : '') +
